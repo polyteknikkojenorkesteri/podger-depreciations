@@ -1,0 +1,9 @@
+# Ignore everything
+/[!.]*
+/.?*
+
+# Except package.json and files in dist and locales directories
+!/dist/**
+!/locales/**
+!package.json
+!package-lock.json
