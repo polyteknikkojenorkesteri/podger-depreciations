@@ -4,6 +4,7 @@
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "lint": "tslint --project tslint.json",
     "start": "functions-framework --target=main"
   },
   "private": true,
