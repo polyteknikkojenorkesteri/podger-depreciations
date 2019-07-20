@@ -128,7 +128,7 @@ export class Money implements MoneyValue {
     return this.withAmount(this.amount.plus(another.amount));
   }
 
-  minus(value: Money): Money {
+  minus(value: MoneyValue): Money {
     const another = Money.valueOf(value);
     this.checkSameCurrency(another);
 
