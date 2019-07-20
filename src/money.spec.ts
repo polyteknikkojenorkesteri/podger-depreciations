@@ -65,6 +65,14 @@ describe('Currency', () => {
 });
 
 describe('Money', () => {
+  describe('valueOf', () => {
+    it('should round the amount to the correct number of decimals', () => {
+      const eur3 = Currency.valueOf({code: 'EUR', exponent: 3});
+      const money = Money.valueOf({amount: 3.1415926536, currency: eur3});
+      expect(money.amount.toString()).to.eq('3.142');
+    });
+  });
+
   describe('plus', () => {
     it('should add amounts', () => {
       const money = Money.valueOf({amount: 1, currency: EUR});
@@ -96,12 +104,24 @@ describe('Money', () => {
       const money = Money.valueOf({amount: 7, currency: EUR});
       expect(money.mul(1.52).amount.toString()).to.eq('10.64');
     });
+
+    it('should round the result to the correct number of decimals', () => {
+      const eur3 = Currency.valueOf({code: 'EUR', exponent: 3});
+      const money = Money.valueOf({amount: 7, currency: eur3});
+      expect(money.mul(3.1415926536).amount.toString()).to.eq('21.991');
+    });
   });
 
   describe('div', () => {
     it('should divide the amount with the given divider', () => {
-      const money = Money.valueOf({amount: 7, currency: EUR});
-      expect(money.div(6).amount.toString()).to.eq('1.1666666666666666667');
+      const money = Money.valueOf({amount: 6, currency: EUR});
+      expect(money.div(2).amount.toString()).to.eq('3');
+    });
+
+    it('should round the result to the correct number of decimals', () => {
+      const eur3 = Currency.valueOf({code: 'EUR', exponent: 3});
+      const money = Money.valueOf({amount: 7, currency: eur3});
+      expect(money.div(6).amount.toString()).to.eq('1.167');
     });
   });
 

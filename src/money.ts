@@ -122,8 +122,8 @@ export class Money implements MoneyValue {
       throw new CurrencyError('Undefined currency');
     }
 
-    this.amount = new Decimal(value.amount);
     this.currency = Currency.valueOf(value.currency);
+    this.amount = new Decimal(value.amount).toDecimalPlaces(this.currency.exponent);
   }
 
   static valueOf(value: MoneyValue): Money {
