@@ -36,6 +36,14 @@ describe('Currency', () => {
     it('should return false if exponent not equal', () => {
       expect(currency.equals(Currency.valueOf({code: 'XTS', exponent: 3}))).to.eq(false);
     });
+
+    it('should return false if value is undefined', () => {
+      expect(currency.equals(undefined)).to.eq(false);
+    });
+
+    it('should return false if value is null', () => {
+      expect(currency.equals(null)).to.eq(false);
+    });
   });
 
   describe('toString', () => {
@@ -204,6 +212,14 @@ describe('Money', () => {
 
     it('should return false if currency not equal', () => {
       expect(money.equals(Money.valueOf({amount: 12.3, currency: USD}))).to.eq(false);
+    });
+
+    it('should return false if value is undefined', () => {
+      expect(money.equals(undefined)).to.eq(false);
+    });
+
+    it('should return false if value is null', () => {
+      expect(money.equals(null)).to.eq(false);
     });
   });
 

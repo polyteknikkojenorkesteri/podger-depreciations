@@ -63,8 +63,10 @@ export class Currency implements CurrencyDefinition {
     return this.code;
   }
 
-  equals(another: string | CurrencyDefinition): boolean {
-    if (typeof another === 'string') {
+  equals(another: any): boolean {
+    if (another === undefined || another === null) {
+      return false;
+    } else if (typeof another === 'string') {
       return this.code === another;
     } else {
       return this.code === another.code && this.exponent === another.exponent;
@@ -222,9 +224,12 @@ export class Money implements MoneyValue {
     return `${this.amount.toFixed(this.currency.exponent)} ${this.currency}`;
   }
 
-  equals(another: MoneyValue) {
-    return another.amount
-      && this.amount.equals(another.amount)
+  equals(another: any) {
+    if (another === undefined || another === null) {
+      return false;
+    }
+
+    return this.amount.equals(another.amount)
       && this.currency.equals(another.currency);
   }
 
