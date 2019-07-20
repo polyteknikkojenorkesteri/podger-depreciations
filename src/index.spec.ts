@@ -137,11 +137,11 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Expected assets total value to equal entry 2018-04-08 balance 2000.00 EUR but was 1500.00 EUR');
+        expect(res.body.message).to.eq('Expected assets total value to equal Entry{2018-04-08 Gran cassa} balance 2000.00 EUR but was 1500.00 EUR');
       });
     });
 
-    describe('undefined currency on debit and balance', () => {
+    describe('undefined currency on debit', () => {
       const res = doSend({
         entries: [
           {
@@ -152,7 +152,8 @@ describe('main', () => {
               amount: '1400.00'
             },
             balance: {
-              amount: '1400.00'
+              amount: '1400.00',
+              currency: 'EUR'
             }
           }
         ]
@@ -163,7 +164,7 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Undefined currency on entry 2016-10-02');
+        expect(res.body.message).to.eq('Invalid debit on Entry{2016-10-02 Piano}: Undefined currency');
       });
     });
 
@@ -190,7 +191,7 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Invalid balance on entry 2016-10-02: Undefined currency');
+        expect(res.body.message).to.eq('Invalid balance on Entry{2016-10-02 Piano}: Undefined currency');
       });
     });
   });

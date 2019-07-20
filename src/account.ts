@@ -1,5 +1,5 @@
 import {Asset, AssetEntry, CurrencyConversionEntry, EntryValue} from "./asset";
-import {Currency, EUR, Money, MoneyValue} from "./money";
+import {Currency, CurrencyDefinition, EUR, Money} from "./money";
 import {ClientError} from "./error";
 
 export class BalanceError extends ClientError {
@@ -16,6 +16,68 @@ export class InvalidEntryError extends ClientError {
   }
 }
 
+class AccountEntry implements EntryValue {
+  readonly date: string;
+  readonly assetId?: string;
+  readonly description: string;
+  readonly currencyConversion?: {
+    readonly from: string | CurrencyDefinition,
+    readonly to: string | CurrencyDefinition,
+    readonly rate: number
+  };
+  readonly debit?: Money;
+  readonly credit?: Money;
+  readonly balance: Money;
+  readonly currency: Currency;
+
+  constructor(value: EntryValue) {
+    this.date = value.date;
+    this.assetId = value.assetId;
+    this.description = value.description;
+    this.currencyConversion = value.currencyConversion;
+
+    try {
+      this.debit = value.debit ? Money.valueOf(value.debit) : undefined;
+    } catch (err) {
+      throw new InvalidEntryError(`Invalid debit on ${this.valueToString(value)}: ${err.message}`);
+    }
+
+    try {
+      this.credit = value.credit ? Money.valueOf(value.credit) : undefined;
+    } catch (err) {
+      throw new InvalidEntryError(`Invalid credit on ${this.valueToString(value)}: ${err.message}`);
+    }
+
+    if (!value.balance) {
+      throw new InvalidEntryError(`Invalid balance on ${this.valueToString(value)}: ${value.balance}`);
+    }
+
+    try {
+      this.balance = Money.valueOf(value.balance);
+    } catch (err) {
+      throw new InvalidEntryError(`Invalid balance on ${this.valueToString(value)}: ${err.message}`);
+    }
+
+    if (this.balance) {
+      this.currency = Currency.valueOf(this.balance.currency);
+    } else if (this.credit) {
+      this.currency = Currency.valueOf(this.credit.currency);
+    } else if (this.debit) {
+      this.currency = Currency.valueOf(this.debit.currency);
+    } else {
+      throw new InvalidEntryError(`Undefined currency on entry ${this.valueToString(value)}`);
+    }
+  }
+
+  toString() {
+    return this.valueToString(this);
+  }
+
+  private valueToString(value: EntryValue) {
+    return `Entry{${value.date} ${value.description}}`;
+  }
+}
+
 /**
  * Represents a ledger account consisting of assets.
  */
@@ -28,9 +90,11 @@ export class Account {
 
   private assets: {[s: string]: Asset} = {};
 
-  addEntry(entry: EntryValue) {
+  addEntry(value: EntryValue) {
+    const entry = new AccountEntry(value);
+
     if (this.isEmpty()) {
-      this.currency = this.getCurrencyFromEntry(entry);
+      this.currency = entry.currency;
     }
 
     if (entry.assetId) {
@@ -40,7 +104,7 @@ export class Account {
     } else if (entry.currencyConversion) {
       this.applyCurrencyConversion(entry);
     } else {
-      throw new InvalidEntryError('Unknown entry');
+      throw new InvalidEntryError(`Unknown entry: ${entry}`);
     }
 
     this.checkTotalValueEquals(entry);
@@ -68,7 +132,7 @@ export class Account {
     }, Money.valueOf({amount: 0, currency: this.currency}));
   }
 
-  private applyAssetEntry(entry: EntryValue) {
+  private applyAssetEntry(entry: AccountEntry) {
     if (entry.assetId === undefined) {
       throw new Error('Asset id must be defined for an asset entry');
     }
@@ -89,7 +153,7 @@ export class Account {
     }));
   }
 
-  private applyDepreciation(entry: EntryValue) {
+  private applyDepreciation(entry: AccountEntry) {
     if (entry.credit === undefined) {
       throw new Error('Credit must be defined for a depreciation entry');
     }
@@ -119,11 +183,7 @@ export class Account {
     }
   }
 
-  private applyCurrencyConversion(entry: EntryValue) {
-    if (entry.balance === undefined) {
-      throw new Error('Balance must be defined for a currency conversion entry');
-    }
-
+  private applyCurrencyConversion(entry: AccountEntry) {
     if (entry.currencyConversion === undefined) {
       throw new Error('Currency conversion must be defined');
     }
@@ -177,34 +237,11 @@ export class Account {
    * @throws InvalidEntryError if entry does not have balance defined
    * @throws BalanceError if current assets total value does not equal to the given entry.
    */
-  private checkTotalValueEquals(entry: EntryValue) {
-    if (entry.balance === undefined) {
-      throw new InvalidEntryError(`Undefined balance in entry '${entry.date}'`);
-    }
-
-    let balance;
-    try {
-      balance = Money.valueOf(entry.balance);
-    } catch (err) {
-      throw new InvalidEntryError(`Invalid balance on entry ${entry.date}: ${err.message}`);
-    }
-
+  private checkTotalValueEquals(entry: AccountEntry) {
     const totalValue = this.getBalance();
 
     if (!totalValue.equals(entry.balance)) {
-      throw new BalanceError(`Expected assets total value to equal entry ${entry.date} balance ${balance} but was ${totalValue}`);
+      throw new BalanceError(`Expected assets total value to equal ${entry} balance ${entry.balance} but was ${totalValue}`);
     }
-  }
-
-  private getCurrencyFromEntry(entry: EntryValue): Currency {
-    if (entry.balance && entry.balance.currency) {
-      return Currency.valueOf(entry.balance.currency);
-    } else if (entry.credit && entry.credit.currency) {
-      return Currency.valueOf(entry.credit.currency);
-    } else if (entry.debit && entry.debit.currency) {
-      return Currency.valueOf(entry.debit.currency);
-    }
-
-    throw new InvalidEntryError(`Undefined currency on entry ${entry.date}`);
   }
 }
