@@ -182,10 +182,17 @@ export class Account {
       throw new InvalidEntryError(`Undefined balance in entry '${entry.date}'`);
     }
 
+    let balance;
+    try {
+      balance = Money.valueOf(entry.balance);
+    } catch (err) {
+      throw new InvalidEntryError(`Invalid balance on entry ${entry.date}: ${err.message}`);
+    }
+
     const totalValue = this.getBalance();
 
     if (!totalValue.equals(entry.balance)) {
-      throw new BalanceError(`Expected assets total value to equal entry ${entry.date} balance ${Money.valueOf(entry.balance)} but was ${totalValue}`);
+      throw new BalanceError(`Expected assets total value to equal entry ${entry.date} balance ${balance} but was ${totalValue}`);
     }
   }
 

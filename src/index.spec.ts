@@ -141,7 +141,7 @@ describe('main', () => {
       });
     });
 
-    describe('undefined currency', () => {
+    describe('undefined currency on debit and balance', () => {
       const res = doSend({
         entries: [
           {
@@ -164,6 +164,33 @@ describe('main', () => {
 
       it('should return a message', () => {
         expect(res.body.message).to.eq('Undefined currency on entry 2016-10-02');
+      });
+    });
+
+    describe('undefined currency on balance', () => {
+      const res = doSend({
+        entries: [
+          {
+            date: '2016-10-02',
+            assetId: '2016/042',
+            description: 'Piano',
+            debit: {
+              amount: '1400.00',
+              currency: 'EUR'
+            },
+            balance: {
+              amount: '1400.00'
+            }
+          }
+        ]
+      });
+
+      it('should return status 400', () => {
+        expect(res.status.lastCall.args[0]).to.eq(400);
+      });
+
+      it('should return a message', () => {
+        expect(res.body.message).to.eq('Invalid balance on entry 2016-10-02: Undefined currency');
       });
     });
   });

@@ -1,4 +1,4 @@
-import {Currency, CurrencyError, DKK, EUR, Money, USD} from './money';
+import {Currency, CurrencyError, DKK, EUR, InvalidCurrencyError, Money, USD} from './money';
 import {expect} from 'chai';
 
 describe('Currency', () => {
@@ -19,6 +19,16 @@ describe('Currency', () => {
       const eur3 = Currency.valueOf({code: 'EUR', exponent: 3});
       expect(eur2.exponent).to.eq(2);
       expect(eur3.exponent).to.eq(3);
+    });
+
+    it('should throw error on undefined', () => {
+      // @ts-ignore
+      expect(() => Currency.valueOf(undefined)).to.throw(InvalidCurrencyError);
+    });
+
+    it('should throw error on null', () => {
+      // @ts-ignore
+      expect(() => Currency.valueOf(null)).to.throw(InvalidCurrencyError);
     });
   });
 

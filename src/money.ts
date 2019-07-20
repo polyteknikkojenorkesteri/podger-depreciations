@@ -1,5 +1,12 @@
 import {Decimal} from 'decimal.js';
 
+export class InvalidCurrencyError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidCurrencyError'
+  }
+}
+
 export interface CurrencyDefinition {
   code: string;
   exponent: number;
@@ -38,8 +45,8 @@ export class Currency implements CurrencyDefinition {
   }
 
   static valueOf(value: string | CurrencyDefinition): Currency {
-    if (value === undefined) {
-      throw new Error('Undefined currency');
+    if (value === undefined || value === null) {
+      throw new InvalidCurrencyError(`Invalid currency '${value}'`);
     }
 
     if (typeof value === 'string') {
