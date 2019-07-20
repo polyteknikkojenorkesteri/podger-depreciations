@@ -2,7 +2,7 @@ import {Currency, CurrencyDefinition, Money, MoneyValue} from "./money";
 
 export interface EntryValue {
   date: string;
-  assetId: string;
+  assetId?: string;
   description: string;
   currencyConversion?: {
     readonly from: string | CurrencyDefinition,
@@ -18,7 +18,7 @@ export type Entry = AssetEntry | CurrencyConversionEntry;
 
 export class AssetEntry {
   readonly date: string;
-  readonly assetId: string;
+  readonly assetId?: string;
   readonly description: string;
   readonly debit?: Money;
   readonly credit?: Money;
@@ -54,7 +54,7 @@ export class AssetEntry {
 
 export class CurrencyConversionEntry {
   readonly date: string;
-  readonly assetId: string;
+  readonly assetId?: string;
   readonly description: string;
   readonly currencyConversion: {
     readonly from: string | CurrencyDefinition,
