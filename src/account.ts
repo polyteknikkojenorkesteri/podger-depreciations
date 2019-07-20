@@ -189,15 +189,15 @@ export class Account {
     }
   }
 
-  private getCurrencyFromEntry(value: EntryValue): Currency {
-    if (value.balance !== undefined) {
-      return Currency.valueOf(value.balance.currency);
-    } else if (value.credit !== undefined) {
-      return Currency.valueOf(value.credit.currency);
-    } else if (value.debit !== undefined) {
-      return Currency.valueOf(value.debit.currency);
+  private getCurrencyFromEntry(entry: EntryValue): Currency {
+    if (entry.balance && entry.balance.currency) {
+      return Currency.valueOf(entry.balance.currency);
+    } else if (entry.credit && entry.credit.currency) {
+      return Currency.valueOf(entry.credit.currency);
+    } else if (entry.debit && entry.debit.currency) {
+      return Currency.valueOf(entry.debit.currency);
     }
 
-    throw new InvalidEntryError('Undefined currency');
+    throw new InvalidEntryError(`Undefined currency on entry ${entry.date}`);
   }
 }

@@ -38,6 +38,10 @@ export class Currency implements CurrencyDefinition {
   }
 
   static valueOf(value: string | CurrencyDefinition): Currency {
+    if (value === undefined) {
+      throw new Error('Undefined currency');
+    }
+
     if (typeof value === 'string') {
       if (!currencies[value]) {
         currencies[value] = new Currency({code: value, exponent: 2});

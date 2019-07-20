@@ -140,5 +140,31 @@ describe('main', () => {
         expect(res.body.message).to.eq('Expected assets total value to equal entry 2018-04-08 balance 2000.00 EUR but was 1500.00 EUR');
       });
     });
+
+    describe('undefined currency', () => {
+      const res = doSend({
+        entries: [
+          {
+            date: '2016-10-02',
+            assetId: '2016/042',
+            description: 'Piano',
+            debit: {
+              amount: '1400.00'
+            },
+            balance: {
+              amount: '1400.00'
+            }
+          }
+        ]
+      });
+
+      it('should return status 400', () => {
+        expect(res.status.lastCall.args[0]).to.eq(400);
+      });
+
+      it('should return a message', () => {
+        expect(res.body.message).to.eq('Undefined currency on entry 2016-10-02');
+      });
+    });
   });
 });
