@@ -1,0 +1,56 @@
+{
+  "entries": [
+    {
+      "date": "2017-03-08",
+      "assetId": "2017/001",
+      "description": "Key deposit, Saaga Salamanteri",
+      "debit": {
+        "amount": "20.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "20.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2017-03-12",
+      "assetId": "2017/002",
+      "description": "Key deposit, Matilda Meritähti",
+      "debit": {
+        "amount": "20.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "40.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2019-05-31",
+      "assetId": "2017/001",
+      "description": "Return key deposit, Saaga Salamanteri",
+      "credit": {
+        "amount": "20.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "20.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-08-22",
+      "assetId": "2018/001",
+      "description": "Key deposit, Taavi Taskurapu",
+      "debit": {
+        "amount": "20.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "40.00",
+        "currency": "EUR"
+      }
+    }
+  ]
+}

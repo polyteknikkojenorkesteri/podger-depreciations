@@ -1,0 +1,682 @@
+{
+  "balance": {
+    "amount": "1829.52",
+    "currency": "EUR"
+  },
+  "assets": [
+    {
+      "id": "1999/*",
+      "name": "Unknown assets",
+      "debit": {
+        "amount": "406.36",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "231.34",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "175.02",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "1999-01-01",
+          "assetId": "1999/*",
+          "description": "Unknown assets",
+          "debit": {
+            "amount": "2416.14",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "2416.14",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "1999-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "241.61",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "2174.53",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2000-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "135.86",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "2038.67",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2001-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "203.86",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "1834.81",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2002-01-01",
+          "assetId": "1999/*",
+          "description": "Convert FIM to EUR",
+          "currencyConversion": {
+            "rate": 0.1681879265,
+            "from": "FIM",
+            "to": "EUR"
+          },
+          "balance": {
+            "amount": "308.59",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2002-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "30.86",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "277.73",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2003-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "13.89",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "263.84",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2004-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "13.20",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "250.64",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2005-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "12.53",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "238.11",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2006-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "11.91",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "226.20",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2007-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "11.31",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "214.89",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2008-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "10.74",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "204.15",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2016-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "10.21",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "193.94",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2017-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "9.70",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "184.24",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "1999/*",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "9.22",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "175.02",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1999/999",
+      "name": "Antique bells",
+      "debit": {
+        "amount": "105.12",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "59.83",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "45.29",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "1999-12-24",
+          "assetId": "1999/999",
+          "description": "Antique bells",
+          "debit": {
+            "amount": "625.00",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "625.00",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "1999-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "62.50",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "562.50",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2000-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "35.14",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "527.36",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2001-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "52.74",
+            "currency": "FIM"
+          },
+          "balance": {
+            "amount": "474.62",
+            "currency": "FIM"
+          }
+        },
+        {
+          "date": "2002-01-01",
+          "assetId": "1999/999",
+          "description": "Convert FIM to EUR",
+          "currencyConversion": {
+            "rate": 0.1681879265,
+            "from": "FIM",
+            "to": "EUR"
+          },
+          "balance": {
+            "amount": "79.83",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2002-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 10%",
+          "credit": {
+            "amount": "7.98",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "71.85",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2003-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "3.59",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "68.26",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2004-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "3.41",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "64.85",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2005-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "3.24",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "61.61",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2006-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "3.08",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "58.53",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2007-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "2.93",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "55.60",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2008-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "2.78",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "52.82",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2016-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "2.64",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "50.18",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2017-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "2.51",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "47.67",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "1999/999",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "2.38",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "45.29",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2016/042",
+      "name": "Piano",
+      "debit": {
+        "amount": "1400.00",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "1400.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "0.00",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "2016-10-02",
+          "assetId": "2016/042",
+          "description": "Piano",
+          "debit": {
+            "amount": "1400.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1400.00",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2016-12-31",
+          "assetId": "2016/042",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "70.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1330.00",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2017-12-31",
+          "assetId": "2016/042",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "66.50",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1263.50",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-06-14",
+          "assetId": "2016/042",
+          "description": "Stolen piano (depreciations 1400.00 EUR - 70.00 EUR - 66.50 EUR = 1263.50 EUR)",
+          "credit": {
+            "amount": "1263.50",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "0.00",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2018/001",
+      "name": "Gran cassa",
+      "debit": {
+        "amount": "1500.00",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "75.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1425.00",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "2018-04-08",
+          "assetId": "2018/001",
+          "description": "Gran cassa",
+          "debit": {
+            "amount": "1500.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1500.00",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "2018/001",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "75.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1425.00",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2018/002a",
+      "name": "Timpani mallets",
+      "debit": {
+        "amount": "121.00",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "6.05",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "114.95",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "2018-09-21",
+          "assetId": "2018/002a",
+          "description": "Timpani mallets",
+          "debit": {
+            "amount": "121.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "121.00",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "2018/002a",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "6.05",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "114.95",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2018/002b",
+      "name": "Rosin for the viola",
+      "debit": {
+        "amount": "10.90",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "0.54",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "10.36",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "2018-09-21",
+          "assetId": "2018/002b",
+          "description": "Rosin for the viola",
+          "debit": {
+            "amount": "10.90",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "10.90",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "2018/002b",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "0.54",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "10.36",
+            "currency": "EUR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "2018/002c",
+      "name": "A bow for the viola",
+      "debit": {
+        "amount": "62.00",
+        "currency": "EUR"
+      },
+      "credit": {
+        "amount": "3.10",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "58.90",
+        "currency": "EUR"
+      },
+      "entries": [
+        {
+          "date": "2018-09-21",
+          "assetId": "2018/002c",
+          "description": "A bow for the viola",
+          "debit": {
+            "amount": "62.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "62.00",
+            "currency": "EUR"
+          }
+        },
+        {
+          "date": "2018-12-31",
+          "assetId": "2018/002c",
+          "description": "Annual equipment depreciation 5%",
+          "credit": {
+            "amount": "3.10",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "58.90",
+            "currency": "EUR"
+          }
+        }
+      ]
+    }
+  ]
+}

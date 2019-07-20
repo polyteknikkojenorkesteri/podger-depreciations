@@ -1,0 +1,277 @@
+{
+  "entries": [
+    {
+      "date": "1999-01-01",
+      "assetId": "1999/*",
+      "description": "Unknown assets",
+      "debit": {
+        "amount": "2416.14",
+        "currency": "FIM"
+      },
+      "balance": {
+        "amount": "2416.14",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "1999-12-24",
+      "assetId": "1999/999",
+      "description": "Antique bells",
+      "debit": {
+        "amount": "625.00",
+        "currency": "FIM"
+      },
+      "balance": {
+        "amount": "3041.14",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "1999-12-31",
+      "description": "Annual equipment depreciation 10%",
+      "credit": {
+        "amount": "304.11",
+        "currency": "FIM"
+      },
+      "balance": {
+        "amount": "2737.03",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "2000-12-31",
+      "description": "Annual equipment depreciation 10%",
+      "credit": {
+        "amount": "171.00",
+        "currency": "FIM"
+      },
+      "balance": {
+        "amount": "2566.03",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "2001-12-31",
+      "description": "Annual equipment depreciation 10%",
+      "credit": {
+        "amount": "256.60",
+        "currency": "FIM"
+      },
+      "balance": {
+        "amount": "2309.43",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "2002-01-01",
+      "description": "Convert FIM to EUR",
+      "currencyConversion": {
+        "rate": 0.1681879265,
+        "from": "FIM",
+        "to": "EUR"
+      },
+      "balance": {
+        "amount": "388.42",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2002-12-31",
+      "description": "Annual equipment depreciation 10%",
+      "credit": {
+        "amount": "38.84",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "349.58",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2003-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "17.48",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "332.10",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2004-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "16.61",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "315.49",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2005-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "15.77",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "299.72",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2006-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "14.99",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "284.73",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2007-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "14.24",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "270.49",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2008-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "13.52",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "256.97",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2016-10-02",
+      "assetId": "2016/042",
+      "description": "Piano",
+      "debit": {
+        "amount": "1400.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1656.97",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2016-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "82.85",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1574.12",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2017-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "78.71",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1495.41",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-04-08",
+      "assetId": "2018/001",
+      "description": "Gran cassa",
+      "debit": {
+        "amount": "1500.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "2995.41",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-06-14",
+      "assetId": "2016/042",
+      "description": "Stolen piano (depreciations 1400.00 EUR - 70.00 EUR - 66.50 EUR = 1263.50 EUR)",
+      "credit": {
+        "amount": "1263.50",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1731.91",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-09-21",
+      "assetId": "2018/002a",
+      "description": "Timpani mallets",
+      "debit": {
+        "amount": "121.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1852.91",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-09-21",
+      "assetId": "2018/002b",
+      "description": "Rosin for the viola",
+      "debit": {
+        "amount": "10.90",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1863.81",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-09-21",
+      "assetId": "2018/002c",
+      "description": "A bow for the viola",
+      "debit": {
+        "amount": "62.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1925.81",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-12-31",
+      "description": "Annual equipment depreciation 5%",
+      "credit": {
+        "amount": "96.29",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1829.52",
+        "currency": "EUR"
+      }
+    }
+  ]
+}
