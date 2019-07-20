@@ -137,7 +137,7 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Expected asset total value 2000.00 EUR but was 1500.00 EUR');
+        expect(res.body.message).to.eq('Expected assets total value to equal entry 2018-04-08 balance 2000.00 EUR but was 1500.00 EUR');
       });
     });
   });

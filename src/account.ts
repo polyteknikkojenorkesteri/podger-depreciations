@@ -43,9 +43,7 @@ export class Account {
       throw new InvalidEntryError('Unknown entry');
     }
 
-    if (entry.balance !== undefined) {
-      this.checkTotalValueEquals(entry.balance);
-    }
+    this.checkTotalValueEquals(entry);
   }
 
   isEmpty(): boolean {
@@ -171,11 +169,23 @@ export class Account {
     }, {});
   }
 
-  private checkTotalValueEquals(balance: MoneyValue) {
+  /**
+   * A postcondition check: after applying an entry, assets total value must always equal to the
+   * balance defined in the entry.
+   *
+   * @param entry
+   * @throws InvalidEntryError if entry does not have balance defined
+   * @throws BalanceError if current assets total value does not equal to the given entry.
+   */
+  private checkTotalValueEquals(entry: EntryValue) {
+    if (entry.balance === undefined) {
+      throw new InvalidEntryError(`Undefined balance in entry '${entry.date}'`);
+    }
+
     const totalValue = this.getBalance();
 
-    if (!totalValue.equals(balance)) {
-      throw new BalanceError(`Expected asset total value ${Money.valueOf(balance)} but was ${totalValue}`);
+    if (!totalValue.equals(entry.balance)) {
+      throw new BalanceError(`Expected assets total value to equal entry ${entry.date} balance ${Money.valueOf(entry.balance)} but was ${totalValue}`);
     }
   }
 
