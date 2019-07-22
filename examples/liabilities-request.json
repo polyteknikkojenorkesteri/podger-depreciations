@@ -29,6 +29,15 @@
       }
     },
     {
+      "date": "2017-12-31",
+      "documentId": "TP2017",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "40.00",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2019-05-31",
       "documentId": "2019/001",
       "assetId": "2017/001",
@@ -51,6 +60,15 @@
         "amount": "20.00",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "40.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2019-12-31",
+      "documentId": "TP2019",
+      "description": "Closing balance",
       "balance": {
         "amount": "40.00",
         "currency": "EUR"

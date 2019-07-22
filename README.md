@@ -83,12 +83,13 @@ See more examples in `examples/` directory.
 
 ## Entry Types
 
-Currently, the function supports four types of entries:
+Currently, the function supports five types of entries:
 
 * debit entry (original cost entries, key deposit returns)
 * credit entry (impairments, key deposits)
 * depreciation entry, applied to all existing assets
 * currency conversion entry, applied to all existing assets
+* balance check entry, does not affect assets and is used only for validation
 
 All entries of one general ledger account should be provided in the request. Each entry must have `date`, `documentId`, `description` and `balance` fields defined. Document id refers to the source document of the entry, and there may be multiple assets referring to the same document. The format of the id is not constrained, but for a natural ordering the recommended format is `yyyy/nnn`, which refers to a fiscal year and a zero-padded entry number.
 
@@ -180,6 +181,22 @@ Balance refers to the account balance after the conversion in the new currency.
   },
   "balance": {
     "amount": "105.12",
+    "currency": "EUR"
+  }
+}
+```
+
+### Balance Check Entry
+
+Balance check entries are optional and do not affect the assets, but are used to check that the assets total value equals the given balance at the given moment. If the running balances for the entries are calculated automatically, it is a good idea to include manual entries at least for the closing balance of every fiscal year so that it's easier to find any possible errors. In the source data they also provide useful info if there are some fiscal years without any entries.
+
+```
+{
+  "date": "2001-12-31",
+  "documentId": "TP2001",
+  "description": "Closing balance",
+  "balance": {
+    "amount": "1412.08",
     "currency": "EUR"
   }
 }

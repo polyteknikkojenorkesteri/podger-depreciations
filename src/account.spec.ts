@@ -835,6 +835,72 @@ describe('Account', () => {
     });
   });
 
+  describe('balance check entry', () => {
+    describe('valid balance', () => {
+      it('should pass if the balance equals assets current total value', () => {
+        const account = new Account();
+
+        account.addEntry({
+          date: '2018-04-08',
+          documentId: '2018/001',
+          assetId: '2018/001',
+          description: 'Gran cassa',
+          debit: {
+            amount: '1500.00',
+            currency: 'EUR'
+          },
+          balance: {
+            amount: '1500.00',
+            currency: 'EUR'
+          }
+        });
+
+        account.addEntry({
+          date: '2018-12-31',
+          documentId: 'TP2018',
+          description: 'Closing balance',
+          balance: {
+            amount: '1500.00',
+            currency: 'EUR'
+          }
+        });
+      });
+    });
+
+    describe('invalid balance', () => {
+      it('should throw an error if the balance does not equal assets current total value', () => {
+        const account = new Account();
+
+        account.addEntry({
+          date: '2018-04-08',
+          documentId: '2018/001',
+          assetId: '2018/001',
+          description: 'Gran cassa',
+          debit: {
+            amount: '1500.00',
+            currency: 'EUR'
+          },
+          balance: {
+            amount: '1500.00',
+            currency: 'EUR'
+          }
+        });
+
+        expect(() => {
+          account.addEntry({
+            date: '2018-12-31',
+            documentId: 'TP2018',
+            description: 'Closing balance',
+            balance: {
+              amount: '1499.99', // should be 1500.00
+              currency: 'EUR'
+            }
+          });
+        }).to.throw(BalanceError);
+      });
+    });
+  });
+
   describe('balance validation', () => {
     describe('original cost entry has incorrect balance', () => {
       const account = new Account();

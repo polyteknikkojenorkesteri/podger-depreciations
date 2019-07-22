@@ -112,6 +112,8 @@ export class Account {
       this.applyDepreciation(entry);
     } else if (entry.currencyConversion) {
       this.applyCurrencyConversion(entry);
+    } else if (entry.balance) {
+      // Skip the entry but check the total balance
     } else {
       throw new InvalidEntryError(`Unknown entry: ${entry}`);
     }

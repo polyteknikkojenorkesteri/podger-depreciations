@@ -42,6 +42,15 @@
       }
     },
     {
+      "date": "1999-12-31",
+      "documentId": "TP1999",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "2737.03",
+        "currency": "FIM"
+      }
+    },
+    {
       "date": "2000-12-31",
       "documentId": "2000/M10",
       "description": "Annual equipment depreciation 10%",
@@ -49,6 +58,15 @@
         "amount": "171.00",
         "currency": "FIM"
       },
+      "balance": {
+        "amount": "2566.03",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "2000-12-31",
+      "documentId": "TP2000",
+      "description": "Closing balance",
       "balance": {
         "amount": "2566.03",
         "currency": "FIM"
@@ -68,7 +86,16 @@
       }
     },
     {
-      "date": "2001-31-12",
+      "date": "2001-12-31",
+      "documentId": "TP2001",
+      "description": "Closing balance (FIM)",
+      "balance": {
+        "amount": "2309.43",
+        "currency": "FIM"
+      }
+    },
+    {
+      "date": "2001-12-31",
       "documentId": "2001/M11",
       "description": "Convert FIM to EUR",
       "currencyConversion": {
@@ -76,6 +103,15 @@
         "from": "FIM",
         "to": "EUR"
       },
+      "balance": {
+        "amount": "388.42",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2001-12-31",
+      "documentId": "TP2001",
+      "description": "Closing balance (EUR)",
       "balance": {
         "amount": "388.42",
         "currency": "EUR"
@@ -95,6 +131,15 @@
       }
     },
     {
+      "date": "2002-12-31",
+      "documentId": "TP2002",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "349.58",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2003-12-31",
       "documentId": "2003/001",
       "description": "Annual equipment depreciation 5%",
@@ -102,6 +147,15 @@
         "amount": "17.48",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "332.10",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2003-12-31",
+      "documentId": "TP2003",
+      "description": "Closing balance",
       "balance": {
         "amount": "332.10",
         "currency": "EUR"
@@ -121,13 +175,31 @@
       }
     },
     {
+      "date": "2004-12-31",
+      "documentId": "TP2004",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "315.49",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2005-12-31",
-      "documentId": "2004/001",
+      "documentId": "2005/001",
       "description": "Annual equipment depreciation 5%",
       "credit": {
         "amount": "15.77",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "299.72",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2005-12-31",
+      "documentId": "TP2005",
+      "description": "Closing balance",
       "balance": {
         "amount": "299.72",
         "currency": "EUR"
@@ -147,6 +219,15 @@
       }
     },
     {
+      "date": "2006-12-31",
+      "documentId": "TP2006",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "284.73",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2007-12-31",
       "documentId": "2007/001",
       "description": "Annual equipment depreciation 5%",
@@ -160,6 +241,15 @@
       }
     },
     {
+      "date": "2007-12-31",
+      "documentId": "TP2007",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "270.49",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2008-12-31",
       "documentId": "2008/001",
       "description": "Annual equipment depreciation 5%",
@@ -167,6 +257,15 @@
         "amount": "13.52",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "256.97",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2008-12-31",
+      "documentId": "TP2008",
+      "description": "Closing balance",
       "balance": {
         "amount": "256.97",
         "currency": "EUR"
@@ -200,6 +299,15 @@
       }
     },
     {
+      "date": "2016-12-31",
+      "documentId": "TP2016",
+      "description": "Closing balance",
+      "balance": {
+        "amount": "1574.12",
+        "currency": "EUR"
+      }
+    },
+    {
       "date": "2017-12-31",
       "documentId": "2017/001",
       "description": "Annual equipment depreciation 5%",
@@ -207,6 +315,15 @@
         "amount": "78.71",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "1495.41",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2017-12-31",
+      "documentId": "TP2017",
+      "description": "Closing balance",
       "balance": {
         "amount": "1495.41",
         "currency": "EUR"
@@ -290,6 +407,15 @@
         "amount": "96.29",
         "currency": "EUR"
       },
+      "balance": {
+        "amount": "1829.52",
+        "currency": "EUR"
+      }
+    },
+    {
+      "date": "2018-12-31",
+      "documentId": "TP2018",
+      "description": "Closing balance",
       "balance": {
         "amount": "1829.52",
         "currency": "EUR"

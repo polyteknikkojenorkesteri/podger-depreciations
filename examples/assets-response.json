@@ -77,7 +77,7 @@
           }
         },
         {
-          "date": "2001-31-12",
+          "date": "2001-12-31",
           "assetId": "1999/*",
           "description": "Convert FIM to EUR",
           "currencyConversion": {
@@ -134,7 +134,7 @@
         },
         {
           "date": "2005-12-31",
-          "documentId": "2004/001",
+          "documentId": "2005/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -305,7 +305,7 @@
           }
         },
         {
-          "date": "2001-31-12",
+          "date": "2001-12-31",
           "assetId": "1999/999",
           "description": "Convert FIM to EUR",
           "currencyConversion": {
@@ -362,7 +362,7 @@
         },
         {
           "date": "2005-12-31",
-          "documentId": "2004/001",
+          "documentId": "2005/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
