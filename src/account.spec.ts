@@ -23,6 +23,76 @@ describe('Account', () => {
     });
   });
 
+  describe('balance based on account type', () => {
+    it('should equal debit minus credit if the first entry is a debit entry', () => {
+      const account = new Account();
+
+      account.addEntry({
+        date: '2019-01-01',
+        assetId: '2019/001',
+        description: 'Debit entry',
+        debit: {
+          amount: '10.00',
+          currency: 'EUR'
+        },
+        balance: {
+          amount: '10.00',
+          currency: 'EUR'
+        }
+      });
+
+      account.addEntry({
+        date: '2019-01-01',
+        assetId: '2019/001',
+        description: 'Credit entry',
+        credit: {
+          amount: '1.00',
+          currency: 'EUR'
+        },
+        balance: {
+          amount: '9.00',
+          currency: 'EUR'
+        }
+      });
+
+      expect(account.getBalance().amount.toString()).to.eq('9');
+    });
+
+    it('should equal credit minus credit if the first entry is a credit entry', () => {
+      const account = new Account();
+
+      account.addEntry({
+        date: '2019-01-01',
+        assetId: '2019/001',
+        description: 'Credit entry',
+        credit: {
+          amount: '1.00',
+          currency: 'EUR'
+        },
+        balance: {
+          amount: '1.00',
+          currency: 'EUR'
+        }
+      });
+
+      account.addEntry({
+        date: '2019-01-01',
+        assetId: '2019/001',
+        description: 'Debit entry',
+        debit: {
+          amount: '10.00',
+          currency: 'EUR'
+        },
+        balance: {
+          amount: '-9.00',
+          currency: 'EUR'
+        }
+      });
+
+      expect(account.getBalance().amount.toString()).to.eq('-9');
+    });
+  });
+
   describe('single asset, no depreciations', () => {
     const account = new Account();
 

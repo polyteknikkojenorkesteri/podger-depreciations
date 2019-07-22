@@ -25,6 +25,10 @@ describe('Asset', () => {
     it('should set balance as zero', () => {
       expect(asset.getBalance().amount.isZero()).to.eq(true);
     });
+
+    it('should throw an error on invalid type', () => {
+      expect(() => new Asset('2019/001', 'Test', EUR, 'invalid')).to.throw('Invalid type \'invalid\'');
+    });
   });
 
   describe('addEntry', () => {
@@ -85,7 +89,36 @@ describe('Asset', () => {
         expect(asset.getBalance().amount.toFixed(2)).to.eq('-10.00');
       });
     });
+  });
 
+  describe('getBalance', () => {
+    it('should equal debit minus credit for assets', () => {
+      const asset = new Asset('2019/001', 'Test', EUR);
+      asset.addEntry(new AssetEntry({
+        date: '2019-01-14',
+        description: 'Test',
+        credit: {
+          amount: '10.00',
+          currency: 'EUR'
+        }
+      }));
+
+      expect(asset.getBalance().amount.toString()).to.eq('-10');
+    });
+
+    it('should equal credit minus debit for liabilities', () => {
+      const asset = new Asset('2019/001', 'Test', EUR, 'liability');
+      asset.addEntry(new AssetEntry({
+        date: '2019-01-14',
+        description: 'Test',
+        credit: {
+          amount: '10.00',
+          currency: 'EUR'
+        }
+      }));
+
+      expect(asset.getBalance().amount.toString()).to.eq('10');
+    });
   });
 
   describe('toJSON', () => {

@@ -90,11 +90,14 @@ export class Account {
 
   private assets: {[s: string]: Asset} = {};
 
+  private type: string = 'asset';
+
   addEntry(value: EntryValue) {
     const entry = new AccountEntry(value);
 
     if (this.isEmpty()) {
       this.currency = entry.currency;
+      this.type = this.getAccountType(entry);
     }
 
     if (entry.assetId) {
@@ -140,7 +143,7 @@ export class Account {
     let asset = this.getAsset(entry.assetId);
 
     if (asset === undefined) {
-      asset = new Asset(entry.assetId, entry.description, this.currency);
+      asset = new Asset(entry.assetId, entry.description, this.currency, this.type);
       this.assets[asset.id] = asset;
     }
 
@@ -243,5 +246,15 @@ export class Account {
     if (!totalValue.equals(entry.balance)) {
       throw new BalanceError(`Expected assets total value to equal ${entry} balance ${entry.balance} but was ${totalValue}`);
     }
+  }
+
+  private getAccountType(firstEntry: EntryValue): string {
+    if (firstEntry.debit && !firstEntry.credit) {
+      return 'asset';
+    } else if (!firstEntry.debit && firstEntry.credit) {
+      return 'liability';
+    }
+
+    throw new InvalidEntryError('First entry must be either a debit or a credit entry');
   }
 }

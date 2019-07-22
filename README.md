@@ -2,7 +2,7 @@
 
 A Google Cloud function for calculating accumulated depreciations for asset cost allocations based on existing ledger entries. Basically, it takes a long list of general ledger entries for a desired account and returns a list of all remaining assets and their current values.
 
-The purpose of this function is to backtrack all existing assets (e.g. equipment, sheet music and key deposits) that have been accumulating in a general ledger for decades.
+The purpose of this function is to backtrack all existing assets (e.g. equipment and sheet music purchases) that have been accumulating in a general ledger for decades. While this tool was primarily designed for asset accounts, it works as well for long-term liabilities too. For example, it can be used to track remaining key deposits. (In fact, we could call both assets and liabilities simply as _tase-erät_, but apparently English does not have such higher-level term.)
 
 Initially, this function was written as a simple disposable App Script function for Google Sheets, but as it became more complex with currency conversions and everything, it was rewritten as a Cloud function to make it more maintainable with better version control and unit tests.
 
@@ -83,20 +83,22 @@ See more examples in `examples/` directory.
 
 Currently, the function supports four types of entries:
 
-* asset debit entry (original cost entries, key deposits)
-* asset credit entry (impairments, deposit returns)
+* debit entry (original cost entries, key deposit returns)
+* credit entry (impairments, key deposits)
 * depreciation entry, applied to all existing assets
 * currency conversion entry, applied to all existing assets
 
-All entries for one general ledger account should be provided in the request. Each entry must have a `date`, `description` and `balance` fields defined.
+All entries for one general ledger account should be provided in the request. Each entry must have `date`, `description` and `balance` fields defined.
 
 The function is designed to read all given debit, credit and balance amounts as they are entered in the original ledger. Balance refers to the whole account balance after the entry is applied. Balance is validated after each entry is applied, and an error is returned if the total value of all assets does not equal to the account balance at that moment.
 
-### Asset Debit Entry
+Balance sign is determined by the first entry, just like it works in ledgers normally. If the first entry is a debit entry, the request is interpreted as an asset request, and the balance is calculated `debit - credit`. However, if the first entry is a credit entry, then the request is interpreted as a liability request, and the balance is calculated `credit - debit`.
 
-Use a debit entry for original cost entries and key deposits. In addition to the common fields, `assetId` and `debit` are required.
+### Debit Entry
 
-Asset id identifies entries related to each asset. The format of the id is not constrained, but for a natural ordering the recommended format is `yyyy/nnn`, which refers to a fiscal year and a zero-padded entry number of the original cost entry of the asset (all further entries for the same asset should use that same id). Additionally, letters can be used to split the original entry if it includes multiple assets: `2018/001a`, `2018/001b`, `2018/001c` etc.
+Use a debit entry for original cost entries and key deposit returns. In addition to the common fields, `assetId` and `debit` are required.
+
+Asset id identifies entries related to each asset. The format of the id is not constrained, but for a natural ordering the recommended format is `yyyy/nnn`, which refers to a fiscal year and a zero-padded entry number of the original cost entry of the asset (all further entries for the same asset should use that same id). Additionally, letters can be used to split an original entry if it includes multiple assets: `2018/001a`, `2018/001b`, `2018/001c` etc.
 
 ```
 {
@@ -114,21 +116,21 @@ Asset id identifies entries related to each asset. The format of the id is not c
 }
 ```
 
-### Asset Credit Entry
+### Credit Entry
 
-This entry type is used for impairments and deposit returns. In addition to the common fields, `assetId` and `credit` are required.
+This entry type is used for impairments and deposits. In addition to the common fields, `assetId` and `credit` are required.
 
 ```
 {
   "date": "2019-05-31",
   "assetId": "2017/001",
-  "description": "Return key deposit",
+  "description": "Key deposit",
   "credit": {
     "amount": "10.00",
     "currency": "EUR"
   },
   "balance": {
-    "amount": "0.00",
+    "amount": "10.00",
     "currency": "EUR"
   }
 }
@@ -202,7 +204,7 @@ npm start
 To try it out with some example data, run
 
 ```
-curl -d "@examples/example-request.json" -X POST -H "Content-Type: application/json" http://localhost:8080
+curl -d "@examples/assets-request.json" -X POST -H "Content-Type: application/json" http://localhost:8080
 ```
 
 ## Deployment

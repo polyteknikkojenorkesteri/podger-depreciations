@@ -99,11 +99,16 @@ export class CurrencyConversionEntry {
 export class Asset {
   readonly id: string;
   readonly name: string;
+  readonly type: string;
   private debit: Money;
   private credit: Money;
   private entries: Entry[];
 
-  constructor(id: string, name: string, currency: string | Currency) {
+  constructor(id: string, name: string, currency: string | Currency, type: string = 'asset') {
+    if (!['asset', 'liability'].includes(type)) {
+      throw new Error(`Invalid type '${type}'`);
+    }
+
     const zero = Money.valueOf({amount: 0, currency: currency});
 
     this.id = id;
@@ -111,6 +116,7 @@ export class Asset {
     this.debit = zero;
     this.credit = zero;
     this.entries = [];
+    this.type = type;
   }
 
   getDebit(): Money {
@@ -122,7 +128,7 @@ export class Asset {
   }
 
   getBalance(): Money {
-    return this.debit.minus(this.credit);
+    return this.debit.minus(this.credit).mul(this.getBalanceSign());
   }
 
   getCurrency(): Currency {
@@ -162,6 +168,10 @@ export class Asset {
 
   toString() {
     return `Asset{${this.id} ${this.name} ${this.getBalance()}}`
+  }
+
+  private getBalanceSign(): number {
+    return this.type === 'liability' ? -1 : 1;
   }
 
   private convertCurrency(entry: CurrencyConversionEntry) {
