@@ -2,6 +2,7 @@
   "entries": [
     {
       "date": "2017-03-08",
+      "documentId": "2017/001",
       "assetId": "2017/001",
       "description": "Key deposit, Saaga Salamanteri",
       "credit": {
@@ -15,6 +16,7 @@
     },
     {
       "date": "2017-03-12",
+      "documentId": "2017/002",
       "assetId": "2017/002",
       "description": "Key deposit, Matilda Meritähti",
       "credit": {
@@ -28,6 +30,7 @@
     },
     {
       "date": "2019-05-31",
+      "documentId": "2019/001",
       "assetId": "2017/001",
       "description": "Return key deposit, Saaga Salamanteri",
       "debit": {
@@ -40,8 +43,9 @@
       }
     },
     {
-      "date": "2018-08-22",
-      "assetId": "2018/001",
+      "date": "2019-08-22",
+      "documentId": "2019/002",
+      "assetId": "2019/002",
       "description": "Key deposit, Taavi Taskurapu",
       "credit": {
         "amount": "20.00",

@@ -2,6 +2,7 @@ import {Currency, CurrencyDefinition, Money, MoneyValue} from "./money";
 
 export interface EntryValue {
   date: string;
+  documentId: string;
   assetId?: string;
   description: string;
   currencyConversion?: {
@@ -18,6 +19,7 @@ export type Entry = AssetEntry | CurrencyConversionEntry;
 
 export class AssetEntry {
   readonly date: string;
+  readonly documentId: string;
   readonly assetId?: string;
   readonly description: string;
   readonly debit?: Money;
@@ -26,6 +28,7 @@ export class AssetEntry {
 
   constructor(entry: EntryValue) {
     this.date = entry.date;
+    this.documentId = entry.documentId;
     this.assetId = entry.assetId;
     this.description =  entry.description;
     this.debit =  entry.debit ? Money.valueOf(entry.debit) : undefined;
@@ -42,6 +45,7 @@ export class AssetEntry {
   toJSON() {
     return {
       date: this.date,
+      documentId: this.documentId,
       assetId: this.assetId,
       description: this.description,
       debit: this.debit ? this.debit.toJSON() : undefined,
@@ -54,6 +58,7 @@ export class AssetEntry {
 
 export class CurrencyConversionEntry {
   readonly date: string;
+  readonly documentId: string;
   readonly assetId?: string;
   readonly description: string;
   readonly currencyConversion: {
@@ -73,6 +78,7 @@ export class CurrencyConversionEntry {
     }
 
     this.date = entry.date;
+    this.documentId = entry.documentId;
     this.assetId = entry.assetId;
     this.description = entry.description;
     this.currencyConversion = entry.currencyConversion;

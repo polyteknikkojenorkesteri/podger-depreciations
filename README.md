@@ -18,6 +18,7 @@ Content-Type: application/json
   "entries": [
     {
       "date": "2018-04-08",
+      "documentId": "2018/001",
       "assetId": "2018/001",
       "description": "Gran cassa",
       "debit": {
@@ -37,43 +38,44 @@ The response contains current values and entries for all remaining assets.
 
 ```
 {
-    "balance": {
+  "balance": {
+    "amount": "1500.00",
+    "currency": "EUR"
+  },
+  "assets": [
+    {
+      "id": "2018/001",
+      "name": "Gran cassa",
+      "debit": {
         "amount": "1500.00",
         "currency": "EUR"
-    },
-    "assets": [
+      },
+      "credit": {
+        "amount": "0.00",
+        "currency": "EUR"
+      },
+      "balance": {
+        "amount": "1500.00",
+        "currency": "EUR"
+      },
+      "entries": [
         {
-            "id": "2018/001",
-            "name": "Gran cassa",
-            "debit": {
-                "amount": "1500.00",
-                "currency": "EUR"
-            },
-            "credit": {
-                "amount": "0.00",
-                "currency": "EUR"
-            },
-            "balance": {
-                "amount": "1500.00",
-                "currency": "EUR"
-            },
-            "entries": [
-                {
-                    "date": "2018-04-08",
-                    "assetId": "2018/001",
-                    "description": "Gran cassa",
-                    "debit": {
-                        "amount": "1500.00",
-                        "currency": "EUR"
-                    },
-                    "balance": {
-                        "amount": "1500.00",
-                        "currency": "EUR"
-                    }
-                }
-            ]
+          "date": "2018-04-08",
+          "documentId": "2018/001",
+          "assetId": "2018/001",
+          "description": "Gran cassa",
+          "debit": {
+            "amount": "1500.00",
+            "currency": "EUR"
+          },
+          "balance": {
+            "amount": "1500.00",
+            "currency": "EUR"
+          }
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
@@ -88,7 +90,7 @@ Currently, the function supports four types of entries:
 * depreciation entry, applied to all existing assets
 * currency conversion entry, applied to all existing assets
 
-All entries for one general ledger account should be provided in the request. Each entry must have `date`, `description` and `balance` fields defined.
+All entries of one general ledger account should be provided in the request. Each entry must have `date`, `documentId`, `description` and `balance` fields defined. Document id refers to the source document of the entry, and there may be multiple assets referring to the same document. The format of the id is not constrained, but for a natural ordering the recommended format is `yyyy/nnn`, which refers to a fiscal year and a zero-padded entry number.
 
 The function is designed to read all given debit, credit and balance amounts as they are entered in the original ledger. Balance refers to the whole account balance after the entry is applied. Balance is validated after each entry is applied, and an error is returned if the total value of all assets does not equal to the account balance at that moment.
 
@@ -98,11 +100,12 @@ Balance sign is determined by the first entry, just like it works in ledgers nor
 
 Use a debit entry for original cost entries and key deposit returns. In addition to the common fields, `assetId` and `debit` are required.
 
-Asset id identifies entries related to each asset. The format of the id is not constrained, but for a natural ordering the recommended format is `yyyy/nnn`, which refers to a fiscal year and a zero-padded entry number of the original cost entry of the asset (all further entries for the same asset should use that same id). Additionally, letters can be used to split an original entry if it includes multiple assets: `2018/001a`, `2018/001b`, `2018/001c` etc.
+Asset id identifies entries related to each asset. The format of the id is not constrained, but it is recommended to use a document id of the original cost entry. Additionally, letters can be used to split the entry if it includes multiple assets: `2018/001a`, `2018/001b`, `2018/001c` etc.
 
 ```
 {
   "date": "2018-04-08",
+  "documentId": "2018/001",
   "assetId": "2018/001",
   "description": "Gran cassa",
   "debit": {
@@ -123,6 +126,7 @@ This entry type is used for impairments and deposits. In addition to the common 
 ```
 {
   "date": "2019-05-31",
+  "documentId": "2017/001",
   "assetId": "2017/001",
   "description": "Key deposit",
   "credit": {
@@ -143,6 +147,7 @@ Depreciations are applied to all existing assets, so `assetId` is not defined. F
 ```
 {
   "date": "2018-12-31",
+  "documentId": "2018/102",
   "description": "Annual equipment depreciation 5%",
   "credit": {
     "amount": "81.05",
@@ -166,6 +171,7 @@ Balance refers to the account balance after the conversion in the new currency.
 ```
 {
   "date": "2001-12-31",
+  "documentId": "2001/M10",
   "description": "Convert FIM to EUR",
   "currencyConversion": {
     "rate": 0.1681879265,

@@ -29,6 +29,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2019-01-01',
+        documentId: '2019/001',
         assetId: '2019/001',
         description: 'Debit entry',
         debit: {
@@ -43,6 +44,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2019-01-01',
+        documentId: '2019/002',
         assetId: '2019/001',
         description: 'Credit entry',
         credit: {
@@ -63,6 +65,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2019-01-01',
+        documentId: '2019/001',
         assetId: '2019/001',
         description: 'Credit entry',
         credit: {
@@ -77,6 +80,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2019-01-01',
+        documentId: '2019/002',
         assetId: '2019/001',
         description: 'Debit entry',
         debit: {
@@ -98,6 +102,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-04-08',
+      documentId: '2018/001',
       assetId: '2018/001',
       description: 'Gran cassa',
       debit: {
@@ -156,6 +161,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-04-08',
+      documentId: '2018/001',
       assetId: '2018/001',
       description: 'Gran cassa',
       debit: {
@@ -170,6 +176,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-12-31',
+      documentId: '2018/002',
       description: 'Annual equipment depreciation 5%',
       credit: {
         amount: '75.00',
@@ -227,6 +234,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-04-08',
+      documentId: '2018/001',
       assetId: '2018/001',
       description: 'Gran cassa',
       debit: {
@@ -241,6 +249,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-12-31',
+      documentId: '2018/002',
       description: 'Annual equipment depreciation 5%',
       credit: {
         amount: '75.00',
@@ -254,6 +263,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2019-12-31',
+      documentId: '2019/001',
       description: 'Annual equipment depreciation 5%',
       credit: {
         amount: '71.25',
@@ -311,6 +321,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-04-08',
+      documentId: '2018/001',
       assetId: '2018/001',
       description: 'Gran cassa',
       debit: {
@@ -325,6 +336,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-09-21',
+      documentId: '2018/002',
       assetId: '2018/002a',
       description: 'Mallets for the timpani',
       debit: {
@@ -339,6 +351,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-12-31',
+      documentId: '2018/003',
       description: 'Annual equipment depreciation 5%',
       credit: {
         amount: '81.05',
@@ -424,6 +437,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '1999-12-24',
+      documentId: '2019/999',
       assetId: '1999/999',
       description: 'Antique bells',
       debit: {
@@ -474,6 +488,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '1999-12-24',
+      documentId: '1999/999',
       assetId: '1999/999',
       description: 'Antique bells',
       debit: {
@@ -490,6 +505,7 @@ describe('Account', () => {
       expect(() => {
         account.addEntry({
           date: '2018-04-08',
+          documentId: '2018/001',
           assetId: '2018/001',
           description: 'Gran cassa',
           debit: {
@@ -510,6 +526,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2016-10-02',
+      documentId: '2016/042',
       assetId: '2016/042',
       description: 'Piano',
       debit: {
@@ -524,6 +541,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-06-14',
+      documentId: '2018/001',
       assetId: '2016/042',
       description: 'Stolen piano',
       credit: {
@@ -583,6 +601,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '1999-12-24',
+        documentId: '1999/999',
         assetId: '1999/999',
         description: 'Antique bells',
         debit: {
@@ -597,6 +616,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2002-01-01',
+        documentId: '2002/001',
         description: 'Convert FIM to EUR',
         currencyConversion: {
           rate: 0.1681879265,
@@ -663,6 +683,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '1999-12-24',
+        documentId: '1999/999',
         assetId: '1999/999',
         description: 'Antique bells',
         debit: {
@@ -677,6 +698,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '1999-12-31',
+        documentId: '1999/M10',
         description: 'Annual equipment depreciation 10%',
         credit: {
           amount: '62.50',
@@ -690,6 +712,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2001-02-01',
+        documentId: '2001/001',
         assetId: '2001/001',
         description: 'Sheet music for a string quartet',
         debit: {
@@ -703,7 +726,8 @@ describe('Account', () => {
       });
 
       account.addEntry({
-        date: '2002-01-01',
+        date: '2001-12-31',
+        documentId: '2001/002',
         description: 'Convert FIM to EUR',
         currencyConversion: {
           rate: 0.1681879265,
@@ -804,6 +828,7 @@ describe('Account', () => {
       expect(() => {
         account.addEntry({
           date: '2018-04-08',
+          documentId: '2018/001',
           description: 'Invalid'
         });
       }).to.throw(InvalidEntryError);
@@ -818,6 +843,7 @@ describe('Account', () => {
         expect(() => {
           account.addEntry({
             date: '2018-04-08',
+            documentId: '2018/001',
             assetId: '2018/001',
             description: 'Gran cassa',
             debit: {
@@ -838,6 +864,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2016-10-02',
+        documentId: '2016/042',
         assetId: '2016/042',
         description: 'Piano',
         debit: {
@@ -854,6 +881,7 @@ describe('Account', () => {
         expect(() => {
           account.addEntry({
             date: '2018-06-14',
+            documentId: '2018/001',
             assetId: '2016/042',
             description: 'Stolen piano',
             credit: {
@@ -874,6 +902,7 @@ describe('Account', () => {
 
       account.addEntry({
         date: '2018-04-08',
+        documentId: '2018/001',
         assetId: '2018/001',
         description: 'Gran cassa',
         debit: {
@@ -890,6 +919,7 @@ describe('Account', () => {
         expect(() => {
           account.addEntry({
             date: '2018-12-31',
+            documentId: '2018/002',
             description: 'Annual equipment depreciation 5%',
             credit: {
               amount: '75.00',
@@ -910,6 +940,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '1999-12-24',
+      documentId: '1999/999',
       assetId: '1999/999',
       description: 'Antique bells',
       debit: {
@@ -924,6 +955,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2002-01-01',
+      documentId: '2002/001',
       description: 'Convert FIM to EUR',
       currencyConversion: {
         rate: 0.1681879265,
@@ -938,6 +970,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2016-10-02',
+      documentId: '2016/042',
       assetId: '2016/042',
       description: 'Piano',
       debit: {
@@ -952,6 +985,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-04-08',
+      documentId: '2018/001',
       assetId: '2018/001',
       description: 'Gran cassa',
       debit: {
@@ -966,6 +1000,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-06-14',
+      documentId: '2018/002',
       assetId: '2016/042',
       description: 'Stolen piano',
       credit: {
@@ -980,7 +1015,8 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-09-21',
-      assetId: '2018/002a',
+      documentId: '2018/003',
+      assetId: '2018/003a',
       description: 'Mallets for the timpani',
       debit: {
         amount: '121.00',
@@ -994,6 +1030,7 @@ describe('Account', () => {
 
     account.addEntry({
       date: '2018-12-31',
+      documentId: '2018/004',
       description: 'Annual equipment depreciation 5%',
       credit: {
         amount: '86.31',

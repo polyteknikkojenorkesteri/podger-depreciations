@@ -36,6 +36,7 @@ describe('Asset', () => {
       const asset = new Asset('2019/001', 'Test', EUR);
       asset.addEntry(new AssetEntry({
         date: '2019-01-14',
+        documentId: '2019/001',
         assetId: '2019/001',
         description: 'Test',
         debit: {
@@ -65,6 +66,7 @@ describe('Asset', () => {
       const asset = new Asset('2019/001', 'Test', EUR);
       asset.addEntry(new AssetEntry({
         date: '2019-01-14',
+        documentId: '2019/001',
         assetId: '2019/001',
         description: 'Test',
         credit: {
@@ -96,6 +98,7 @@ describe('Asset', () => {
       const asset = new Asset('2019/001', 'Test', EUR);
       asset.addEntry(new AssetEntry({
         date: '2019-01-14',
+        documentId: '2019/001',
         description: 'Test',
         credit: {
           amount: '10.00',
@@ -110,6 +113,7 @@ describe('Asset', () => {
       const asset = new Asset('2019/001', 'Test', EUR, 'liability');
       asset.addEntry(new AssetEntry({
         date: '2019-01-14',
+        documentId: '2019/001',
         description: 'Test',
         credit: {
           amount: '10.00',

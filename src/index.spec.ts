@@ -47,6 +47,7 @@ describe('main', () => {
       entries: [
         {
           date: '2018-04-08',
+          documentId: '1/18',
           assetId: '2018/001',
           description: 'Gran cassa',
           debit: {
@@ -97,6 +98,12 @@ describe('main', () => {
       it('should have one entry', () => {
         expect(res.body.assets[0].entries.length).to.eq(1);
       });
+
+      describe('entry', () => {
+        it('should have document id', () => {
+          expect(res.body.assets[0].entries[0].documentId).to.eq('1/18');
+        });
+      });
     });
   });
 
@@ -118,6 +125,7 @@ describe('main', () => {
         entries: [
           {
             date: '2018-04-08',
+            documentId: '2018/001',
             assetId: '2018/001',
             description: 'Gran cassa',
             debit: {
@@ -137,7 +145,7 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Expected assets total value to equal Entry{2018-04-08 Gran cassa} balance 2000.00 EUR but was 1500.00 EUR');
+        expect(res.body.message).to.eq('Expected assets total value to equal Entry{2018/001 Gran cassa} balance 2000.00 EUR but was 1500.00 EUR');
       });
     });
 
@@ -146,6 +154,7 @@ describe('main', () => {
         entries: [
           {
             date: '2016-10-02',
+            documentId: '2016/042',
             assetId: '2016/042',
             description: 'Piano',
             debit: {
@@ -164,11 +173,39 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Invalid debit on Entry{2016-10-02 Piano}: Undefined currency');
+        expect(res.body.message).to.eq('Invalid debit on Entry{2016/042 Piano}: Undefined currency');
       });
     });
 
     describe('undefined currency on balance', () => {
+      const res = doSend({
+        entries: [
+          {
+            date: '2016-10-02',
+            documentId: '2016/042',
+            assetId: '2016/042',
+            description: 'Piano',
+            debit: {
+              amount: '1400.00',
+              currency: 'EUR'
+            },
+            balance: {
+              amount: '1400.00'
+            }
+          }
+        ]
+      });
+
+      it('should return status 400', () => {
+        expect(res.status.lastCall.args[0]).to.eq(400);
+      });
+
+      it('should return a message', () => {
+        expect(res.body.message).to.eq('Invalid balance on Entry{2016/042 Piano}: Undefined currency');
+      });
+    });
+
+    describe('undefined document id', () => {
       const res = doSend({
         entries: [
           {
@@ -180,7 +217,8 @@ describe('main', () => {
               currency: 'EUR'
             },
             balance: {
-              amount: '1400.00'
+              amount: '1400.00',
+              currency: 'EUR'
             }
           }
         ]
@@ -191,7 +229,7 @@ describe('main', () => {
       });
 
       it('should return a message', () => {
-        expect(res.body.message).to.eq('Invalid balance on Entry{2016-10-02 Piano}: Undefined currency');
+        expect(res.body.message).to.eq('Undefined document id on entry Entry{2016-10-02 Piano}');
       });
     });
   });

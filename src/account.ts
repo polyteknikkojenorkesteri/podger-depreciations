@@ -18,6 +18,7 @@ export class InvalidEntryError extends ClientError {
 
 class AccountEntry implements EntryValue {
   readonly date: string;
+  readonly documentId: string;
   readonly assetId?: string;
   readonly description: string;
   readonly currencyConversion?: {
@@ -31,7 +32,12 @@ class AccountEntry implements EntryValue {
   readonly currency: Currency;
 
   constructor(value: EntryValue) {
+    if (!value.documentId) {
+      throw new InvalidEntryError(`Undefined document id on entry ${this.valueToString(value)}`);
+    }
+
     this.date = value.date;
+    this.documentId = value.documentId;
     this.assetId = value.assetId;
     this.description = value.description;
     this.currencyConversion = value.currencyConversion;
@@ -74,7 +80,7 @@ class AccountEntry implements EntryValue {
   }
 
   private valueToString(value: EntryValue) {
-    return `Entry{${value.date} ${value.description}}`;
+    return `Entry{${value.documentId ? value.documentId : value.date} ${value.description}}`;
   }
 }
 
@@ -149,6 +155,7 @@ export class Account {
 
     asset.addEntry(new AssetEntry({
       date: entry.date,
+      documentId: entry.documentId,
       assetId: entry.assetId,
       description: entry.description,
       debit: entry.debit,
@@ -178,6 +185,7 @@ export class Account {
 
       asset.addEntry(new AssetEntry({
         date: entry.date,
+        documentId: entry.documentId,
         assetId: assetId,
         description: entry.description,
         credit: amount,
@@ -211,6 +219,7 @@ export class Account {
 
       asset.addEntry(new CurrencyConversionEntry({
         date: entry.date,
+        documentId: entry.documentId,
         assetId: assetId,
         description: entry.description,
         currencyConversion: entry.currencyConversion,

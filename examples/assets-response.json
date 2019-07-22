@@ -22,6 +22,7 @@
       "entries": [
         {
           "date": "1999-01-01",
+          "documentId": "1999/*",
           "assetId": "1999/*",
           "description": "Unknown assets",
           "debit": {
@@ -35,6 +36,7 @@
         },
         {
           "date": "1999-12-31",
+          "documentId": "1999/M10",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -48,6 +50,7 @@
         },
         {
           "date": "2000-12-31",
+          "documentId": "2000/M10",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -61,6 +64,7 @@
         },
         {
           "date": "2001-12-31",
+          "documentId": "2001/M10",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -73,7 +77,7 @@
           }
         },
         {
-          "date": "2002-01-01",
+          "date": "2001-31-12",
           "assetId": "1999/*",
           "description": "Convert FIM to EUR",
           "currencyConversion": {
@@ -88,6 +92,7 @@
         },
         {
           "date": "2002-12-31",
+          "documentId": "2002/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -101,6 +106,7 @@
         },
         {
           "date": "2003-12-31",
+          "documentId": "2003/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -114,6 +120,7 @@
         },
         {
           "date": "2004-12-31",
+          "documentId": "2004/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -127,6 +134,7 @@
         },
         {
           "date": "2005-12-31",
+          "documentId": "2004/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -140,6 +148,7 @@
         },
         {
           "date": "2006-12-31",
+          "documentId": "2006/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -153,6 +162,7 @@
         },
         {
           "date": "2007-12-31",
+          "documentId": "2007/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -166,6 +176,7 @@
         },
         {
           "date": "2008-12-31",
+          "documentId": "2008/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -179,6 +190,7 @@
         },
         {
           "date": "2016-12-31",
+          "documentId": "2016/099",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -192,6 +204,7 @@
         },
         {
           "date": "2017-12-31",
+          "documentId": "2017/001",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -205,6 +218,7 @@
         },
         {
           "date": "2018-12-31",
+          "documentId": "2018/004",
           "assetId": "1999/*",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -236,6 +250,7 @@
       "entries": [
         {
           "date": "1999-12-24",
+          "documentId": "1999/999",
           "assetId": "1999/999",
           "description": "Antique bells",
           "debit": {
@@ -249,6 +264,7 @@
         },
         {
           "date": "1999-12-31",
+          "documentId": "1999/M10",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -262,6 +278,7 @@
         },
         {
           "date": "2000-12-31",
+          "documentId": "2000/M10",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -275,6 +292,7 @@
         },
         {
           "date": "2001-12-31",
+          "documentId": "2001/M10",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -287,7 +305,7 @@
           }
         },
         {
-          "date": "2002-01-01",
+          "date": "2001-31-12",
           "assetId": "1999/999",
           "description": "Convert FIM to EUR",
           "currencyConversion": {
@@ -302,6 +320,7 @@
         },
         {
           "date": "2002-12-31",
+          "documentId": "2002/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 10%",
           "credit": {
@@ -315,6 +334,7 @@
         },
         {
           "date": "2003-12-31",
+          "documentId": "2003/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -328,6 +348,7 @@
         },
         {
           "date": "2004-12-31",
+          "documentId": "2004/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -341,6 +362,7 @@
         },
         {
           "date": "2005-12-31",
+          "documentId": "2004/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -354,6 +376,7 @@
         },
         {
           "date": "2006-12-31",
+          "documentId": "2006/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -367,6 +390,7 @@
         },
         {
           "date": "2007-12-31",
+          "documentId": "2007/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -380,6 +404,7 @@
         },
         {
           "date": "2008-12-31",
+          "documentId": "2008/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -393,6 +418,7 @@
         },
         {
           "date": "2016-12-31",
+          "documentId": "2016/099",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -406,6 +432,7 @@
         },
         {
           "date": "2017-12-31",
+          "documentId": "2017/001",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -419,6 +446,7 @@
         },
         {
           "date": "2018-12-31",
+          "documentId": "2018/004",
           "assetId": "1999/999",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -450,6 +478,7 @@
       "entries": [
         {
           "date": "2016-10-02",
+          "documentId": "2016/042",
           "assetId": "2016/042",
           "description": "Piano",
           "debit": {
@@ -463,6 +492,7 @@
         },
         {
           "date": "2016-12-31",
+          "documentId": "2016/099",
           "assetId": "2016/042",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -476,6 +506,7 @@
         },
         {
           "date": "2017-12-31",
+          "documentId": "2017/001",
           "assetId": "2016/042",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -489,6 +520,7 @@
         },
         {
           "date": "2018-06-14",
+          "documentId": "2018/002",
           "assetId": "2016/042",
           "description": "Stolen piano (depreciations 1400.00 EUR - 70.00 EUR - 66.50 EUR = 1263.50 EUR)",
           "credit": {
@@ -520,6 +552,7 @@
       "entries": [
         {
           "date": "2018-04-08",
+          "documentId": "2018/001",
           "assetId": "2018/001",
           "description": "Gran cassa",
           "debit": {
@@ -533,6 +566,7 @@
         },
         {
           "date": "2018-12-31",
+          "documentId": "2018/004",
           "assetId": "2018/001",
           "description": "Annual equipment depreciation 5%",
           "credit": {
@@ -547,7 +581,7 @@
       ]
     },
     {
-      "id": "2018/002a",
+      "id": "2018/003a",
       "name": "Timpani mallets",
       "debit": {
         "amount": "121.00",
@@ -564,7 +598,8 @@
       "entries": [
         {
           "date": "2018-09-21",
-          "assetId": "2018/002a",
+          "documentId": "2018/003",
+          "assetId": "2018/003a",
           "description": "Timpani mallets",
           "debit": {
             "amount": "121.00",
@@ -577,7 +612,8 @@
         },
         {
           "date": "2018-12-31",
-          "assetId": "2018/002a",
+          "documentId": "2018/004",
+          "assetId": "2018/003a",
           "description": "Annual equipment depreciation 5%",
           "credit": {
             "amount": "6.05",
@@ -591,7 +627,7 @@
       ]
     },
     {
-      "id": "2018/002b",
+      "id": "2018/003b",
       "name": "Rosin for the viola",
       "debit": {
         "amount": "10.90",
@@ -608,7 +644,8 @@
       "entries": [
         {
           "date": "2018-09-21",
-          "assetId": "2018/002b",
+          "documentId": "2018/003",
+          "assetId": "2018/003b",
           "description": "Rosin for the viola",
           "debit": {
             "amount": "10.90",
@@ -621,7 +658,8 @@
         },
         {
           "date": "2018-12-31",
-          "assetId": "2018/002b",
+          "documentId": "2018/004",
+          "assetId": "2018/003b",
           "description": "Annual equipment depreciation 5%",
           "credit": {
             "amount": "0.54",
@@ -635,7 +673,7 @@
       ]
     },
     {
-      "id": "2018/002c",
+      "id": "2018/003c",
       "name": "A bow for the viola",
       "debit": {
         "amount": "62.00",
@@ -652,7 +690,8 @@
       "entries": [
         {
           "date": "2018-09-21",
-          "assetId": "2018/002c",
+          "documentId": "2018/003",
+          "assetId": "2018/003c",
           "description": "A bow for the viola",
           "debit": {
             "amount": "62.00",
@@ -665,7 +704,8 @@
         },
         {
           "date": "2018-12-31",
-          "assetId": "2018/002c",
+          "documentId": "2018/004",
+          "assetId": "2018/003c",
           "description": "Annual equipment depreciation 5%",
           "credit": {
             "amount": "3.10",
