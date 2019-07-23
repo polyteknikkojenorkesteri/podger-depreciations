@@ -134,6 +134,10 @@ export class Money implements MoneyValue {
     return new Money(value);
   }
 
+  isZero(): boolean {
+    return this.amount.isZero();
+  }
+
   plus(value: MoneyValue): Money {
     const another = Money.valueOf(value);
     this.checkSameCurrency(another);
