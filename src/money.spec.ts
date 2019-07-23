@@ -214,6 +214,34 @@ describe('Money', () => {
         expect(allocations[1].amount.toString()).to.eq('0.03');
       });
     });
+
+    describe('zero ratio alone', () => {
+      it('should throw an error if amount > 0', () => {
+        const money = Money.valueOf({amount: '1.00', currency: 'EUR'});
+        expect(() => money.allocate({0: 0})).to.throw('No ratios defined');
+      });
+
+      it('should return zero if amount is zero', () => {
+        const money = Money.valueOf({amount: '0.00', currency: 'EUR'});
+        const allocations = money.allocate({0: 0});
+
+        expect(allocations[0].amount.toString()).to.eq('0');
+      });
+    });
+
+    describe('zero ratio with others', () => {
+      const money = Money.valueOf({amount: '1.00', currency: 'EUR'});
+      const allocations = money.allocate({0: 0, 1: 1, 2: 2});
+
+      it('should return zero amount', () => {
+        expect(allocations[0].amount.toString()).to.eq('0');
+      });
+
+      it('should not affect others', () => {
+        expect(allocations[1].amount.toString()).to.eq('0.33');
+        expect(allocations[2].amount.toString()).to.eq('0.67');
+      });
+    });
   });
 
   describe('convert', () => {

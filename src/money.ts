@@ -175,11 +175,18 @@ export class Money implements MoneyValue {
    * @param ratios mapped by keys that also map corresponding allocations in the result
    */
   allocate(ratios: NumberMap): MoneyMap {
-    if (Object.keys(ratios).length === 0) {
-      throw new Error('No ratios defined');
-    }
-
     const sumOfRatios = Object.values(ratios).reduce((acc, ratio) => acc + ratio);
+
+    if (sumOfRatios === 0) {
+      if (!this.isZero()) {
+        throw new Error('No ratios defined');
+      }
+
+      return Object.keys(ratios).reduce((acc: MoneyMap, key) => {
+        acc[key] = this;
+        return acc;
+      }, {});
+    }
 
     // Do the allocation with integers (i.e. minor currency units) because it's more simple
     const multiplier = 10 ** this.currency.exponent;
