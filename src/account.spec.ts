@@ -819,6 +819,48 @@ describe('Account', () => {
       });
     });
 
+    describe('asset with zero balance', () => {
+      const account = new Account();
+
+      account.addEntry({
+        date: '2019-12-31',
+        documentId: '2019/001',
+        assetId: '2019/001',
+        description: 'Misc assets',
+        debit: {
+          amount: '0.00',
+          currency: 'EUR'
+        },
+        balance: {
+          amount: '0.00',
+          currency: 'EUR'
+        }
+      });
+
+      account.addEntry({
+        date: '2918-12-31',
+        documentId: '2019/002',
+        description: 'Convert EUR to XTS',
+        currencyConversion: {
+          rate: 3.1415926536,
+          from: 'EUR',
+          to: 'XTS'
+        },
+        balance: {
+          amount: '0.00',
+          currency: 'XTS'
+        }
+      });
+
+      it('should convert balance amount', () => {
+        expect(account.getAssets()[0].getBalance().amount.toString()).to.eq('0');
+      });
+
+      it('should convert balance currency', () => {
+        expect(account.getAssets()[0].getBalance().currency.code).to.eq('XTS');
+      });
+    });
+
   });
 
   describe('add invalid entry', () => {

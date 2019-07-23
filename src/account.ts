@@ -203,7 +203,7 @@ export class Account {
 
     this.currency = Currency.valueOf(entry.currencyConversion.to);
 
-    const ratios = this.allocationsPerAssetValue();
+    const ratios = this.allocationsPerAssetValue(true);
 
     if (Object.keys(ratios).length === 0) {
       return; // No remaining assets
@@ -232,11 +232,16 @@ export class Account {
 
   /**
    * Returns allocations based on asset values.
+   *
+   * @param all if false, includes only assets with balance > 0, otherwise returns
+   * zero allocations
    */
-  private allocationsPerAssetValue() {
+  private allocationsPerAssetValue(all: boolean = false) {
     return this.getAssets().reduce((acc: { [s: string]: number }, asset) => {
       if (asset.getBalance().amount.greaterThan(0)) {
         acc[asset.id] = asset.getBalance().amount.toNumber();
+      } else if (all) {
+        acc[asset.id] = 0;
       }
 
       return acc;
