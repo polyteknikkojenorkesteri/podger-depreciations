@@ -1,6 +1,6 @@
-import {Asset, AssetEntry} from "./asset";
-import {expect} from "chai";
-import {EUR} from "./money";
+import {Asset, AssetEntry, CurrencyConversionEntry} from './asset';
+import {expect} from 'chai';
+import {EUR} from './money';
 
 describe('Asset', () => {
   describe('constructor', () => {
@@ -122,6 +122,74 @@ describe('Asset', () => {
       }));
 
       expect(asset.getBalance().amount.toString()).to.eq('10');
+    });
+  });
+
+  describe('currency conversion', () => {
+    describe('asset', () => {
+      it('should convert credit and debit', () => {
+        const asset = new Asset('2019/001', 'Test', EUR, 'asset');
+
+        asset.addEntry(new AssetEntry({
+          date: '2019-01-14',
+          documentId: '2019/001',
+          description: 'Test',
+          debit: {
+            amount: '10.00',
+            currency: 'EUR'
+          }
+        }));
+
+        asset.addEntry(new CurrencyConversionEntry({
+          date: '2019-12-31',
+          documentId: '2019/002',
+          description: 'Convert EUR to XTS',
+          currencyConversion: {
+            from: 'EUR',
+            to: 'XTS',
+            rate: 3.1415926536
+          },
+          balance: {
+            amount: '31.42',
+            currency: 'XTS'
+          }
+        }));
+
+        expect(asset.getBalance().amount.toString()).to.eq('31.42');
+      });
+    });
+
+    describe('liability', () => {
+      it('should convert credit and debit', () => {
+        const asset = new Asset('2019/001', 'Test', EUR, 'liability');
+
+        asset.addEntry(new AssetEntry({
+          date: '2019-01-14',
+          documentId: '2019/001',
+          description: 'Test',
+          credit: {
+            amount: '10.00',
+            currency: 'EUR'
+          }
+        }));
+
+        asset.addEntry(new CurrencyConversionEntry({
+          date: '2019-12-31',
+          documentId: '2019/002',
+          description: 'Convert EUR to XTS',
+          currencyConversion: {
+            from: 'EUR',
+            to: 'XTS',
+            rate: 3.1415926536
+          },
+          balance: {
+            amount: '31.42',
+            currency: 'XTS'
+          }
+        }));
+
+        expect(asset.getBalance().amount.toString()).to.eq('31.42');
+      });
     });
   });
 

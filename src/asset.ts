@@ -1,4 +1,4 @@
-import {Currency, CurrencyDefinition, Money, MoneyValue} from "./money";
+import {Currency, CurrencyDefinition, Money, MoneyValue} from './money';
 
 export interface EntryValue {
   date: string;
@@ -186,6 +186,6 @@ export class Asset {
     }
 
     this.credit = this.credit.convertTo(entry.currencyConversion.to, entry.currencyConversion.rate);
-    this.debit = Money.valueOf(entry.balance).plus(this.credit);
+    this.debit = entry.balance.mul(this.getBalanceSign()).plus(this.credit);
   }
 }
