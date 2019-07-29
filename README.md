@@ -1,10 +1,12 @@
 # Podger Depreciations
 
-A Google Cloud function for calculating accumulated depreciations for asset cost allocations based on existing ledger entries. Basically, it takes a long list of general ledger entries for a desired account and returns a list of all remaining assets and their current values.
+A [Google Cloud function](https://cloud.google.com/functions/) for calculating accumulated [depreciations](https://en.wikipedia.org/wiki/Depreciation) for asset cost allocations when the current value of the assets is unknown. Basically, it takes a long list of existing general ledger entries for one particular account and returns a list of all remaining assets and their current values.
 
-The purpose of this function is to backtrack all existing assets (e.g. equipment and sheet music purchases) that have been accumulating in a general ledger for decades. While this tool was primarily designed for asset accounts, it works as well for long-term liabilities too. For example, it can be used to track remaining key deposits. (In fact, we could call both assets and liabilities simply as _tase-erät_, but apparently English does not have such higher-level term.)
+The purpose of this function is to backtrack all existing assets (e.g. equipment and sheet music purchases) that have been accumulating in a general ledger for decades. While this tool was primarily designed for calculating depreciations for asset accounts, it works as well for long-term liabilities too. For example, it can be used to track remaining key deposits. (In fact, we could call both assets and liabilities simply as _tase-erät_, but apparently English does not have such higher-level term. Hence, this project uses the term _asset_ for both assets and liabilities.)
 
-Initially, this function was written as a simple disposable App Script function for Google Sheets, but as it became more complex with currency conversions and everything, it was rewritten as a Cloud function to make it more maintainable with better version control and unit tests.
+Initially, this function was written as a simple disposable [Apps Script](https://developers.google.com/apps-script/) function for Google Sheets, but as it became more complex with currency conversions and everything, it was rewritten to run on Cloud Functions to make it more maintainable with TypeScript, proper version control and unit tests. It also aims to be consistent with other Podger microservices. (The Podger project includes various tools for PO's financial management).
+
+Currently, the function runs on the Cloud Functions Node.js 10 runtime.
 
 ## Request and Response
 
@@ -79,7 +81,7 @@ The response contains current values and entries for all remaining assets.
 }
 ```
 
-See more examples in `examples/` directory.
+See more examples in [examples](examples/) directory.
 
 ## Entry Types
 
@@ -202,21 +204,31 @@ Balance check entries are optional and do not affect the assets, but are used to
 }
 ```
 
+## Handling Money
+
+This project features a `Money` class to tackle several challanges related to handling money in code. First, it avoids using floats because of rounding errors. Second, it checks that currencies are never mixed. Third, it uses an allocation algorithm to ensure that no cents are lost in depreciations and currency conversions, as the total balance of the assets must always equal to the original balance of the account.
+
+This class is based on Martin Fowler's [Money Pattern](https://martinfowler.com/eaaCatalog/money.html), see Fowler, M. (2003) Patterns of Enterprise Application Architecture, pp. 488–495. The borrowed allocation algorithm was improved to take rounding rules into account and to distribute remainders more evenly, where Fowler's version would build up leftovers always on the oldest assets. This makes a difference when we calculate the accumulated allocations over several decades.
+
+Our `Money` class is similar to [ts-money](https://github.com/macor161/ts-money) but with a more convenient API for our purposes. The implementation is based on [decimal.js](https://github.com/MikeMcl/decimal.js). 
+
 ## API Gateway
 
-The function is deployed to Google Cloud and should be called via Endpoints, URL https://podger-dev-openapi-6fv77ngoqa-uc.a.run.app/v1/assets/depreciations (requires an API key, get one from Cloud Console)
+The function is deployed to Google Cloud and should be called via [Cloud Endpoints](https://cloud.google.com/endpoints/). The URL of the endpoint is `https://podger-dev-openapi-6fv77ngoqa-uc.a.run.app/v1/assets/depreciations`, and it requires an API key passed in `key` parameter. Get a key from Cloud Console.
 
-OpenAPI documentation for the endpoint is located here: https://bitbucket.org/polyteknikkojenorkesteri/podger-openapi
+OpenAPI specification for all Podger API endpoints is located here: https://bitbucket.org/polyteknikkojenorkesteri/podger-openapi
 
 ## Development
 
+Cloud Functions uses a Node.js 10 runtime, but in a local environment, it should work on newer versions of Node.js as well.
+
 ### Unit Tests
 
-Execute tests by running `npm test`.
+All the functionality is pretty much covered with unit tests written with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/). Execute the tests by running `npm test`.
 
 ### Running Locally
 
-The function can be run locally with the Functions Framework.
+The function can be run locally with the [Functions Framework for Node.js](https://github.com/GoogleCloudPlatform/functions-framework-nodejs).
 
 ```
 npm install
@@ -232,9 +244,75 @@ curl -d "@examples/assets-request.json" -X POST -H "Content-Type: application/js
 
 ## Deployment
 
-The function is automatically deployed to Google Cloud Platform by Bitbucket Pipelines whenever the code is pushed to the repository.
+The function is automatically deployed to Google Cloud Platform by [Bitbucket Pipelines](https://confluence.atlassian.com/bitbucket/build-test-and-deploy-with-pipelines-792496469.html) whenever the code is pushed to the repository.
 
 The deployment requires two environment variables that must be defined in the Bitbucket project.
 
 * Set `GCLOUD_PROJECT` environment variable to your project ID
-* Set `GCLOUD_API_KEYFILE` environment variable to base64-encoded keyfile as described here: https://confluence.atlassian.com/x/dm2xNQ
+* Set `GCLOUD_API_KEYFILE` environment variable to base64-encoded keyfile as described [here](https://confluence.atlassian.com/x/dm2xNQ) 
+
+## Usage in Google Sheets
+
+This simplified example demonstrates how the function can be used as a custom function in Google Sheets. This function takes a range of cells as input, e.g. `=CALCREMAINS(Entries!A2:K156)`. In the script editor, define a function:
+
+```
+function CALCREMAINS(input) {
+  var entries = toEntries(input);
+  var result = doPost(entries);
+  
+  return printResult(result);
+}
+```
+
+First, convert the sheet rows into entry objects.
+
+```
+function toEntries(input) {
+  return input.map(function(row) {
+    return {...}; // Convert your input into entry objects
+  });
+}
+```
+
+The API key should be configured in script properties, and can be read with [PropertiesService](https://developers.google.com/apps-script/reference/properties/properties-service).
+
+```
+function getAPIKey() {
+  var apiKey = PropertiesService.getScriptProperties().getProperty('apiKey');
+
+  if (!apiKey) {
+    throw new Error('Define \'apiKey\' in script properties');
+  }
+
+  return apiKey;
+}
+```
+
+Then, use [UrlFetchApp](https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app) to call Cloud Functions.
+
+```
+function doPost(entries) {
+  var url = 'https://podger-dev-openapi-6fv77ngoqa-uc.a.run.app/v1/assets/depreciations?key=' + getAPIKey();
+  var options = {
+    method : 'post',
+    contentType: 'application/json',
+    payload : JSON.stringify({entries: entries})
+  };
+  var response = UrlFetchApp.fetch(url, options);
+
+  return JSON.parse(response.getContentText());
+}
+```
+
+Finally, the data should be formatted as a two-dimensional array to display it on the sheet.
+
+```
+function printResult(data) {
+  var result = [];
+
+  // Map the data into a two-dimensional array to display the results
+  ...
+
+  return result;
+}
+```
