@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
-import {Account} from "./account";
-import {ClientError} from "./error";
+import {Account} from './account';
+import {ClientError} from './error';
 
 export function main(req: Request, res: Response) {
   try {

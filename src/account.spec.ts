@@ -1,6 +1,6 @@
-import {expect} from "chai";
-import {Account, BalanceError, InvalidEntryError} from "./account";
-import {CurrencyError} from "./money";
+import {expect} from 'chai';
+import {Account, BalanceError, InvalidEntryError} from './account';
+import {CurrencyError} from './money';
 
 describe('Account', () => {
   describe('empty account', () => {

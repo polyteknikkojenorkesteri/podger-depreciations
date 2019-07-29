@@ -1,6 +1,6 @@
-import {main} from "./index";
-import {expect} from "chai";
-import * as sinon from "sinon";
+import {main} from './index';
+import {expect} from 'chai';
+import * as sinon from 'sinon';
 
 /**
  * Calls the function with mock request and response and returns the response body.

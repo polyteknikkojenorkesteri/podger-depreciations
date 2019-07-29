@@ -1,6 +1,6 @@
-import {Asset, AssetEntry, CurrencyConversionEntry, EntryValue} from "./asset";
-import {Currency, CurrencyDefinition, EUR, Money} from "./money";
-import {ClientError} from "./error";
+import {Asset, AssetEntry, CurrencyConversionEntry, EntryValue} from './asset';
+import {Currency, CurrencyDefinition, EUR, Money} from './money';
+import {ClientError} from './error';
 
 export class BalanceError extends ClientError {
   constructor(message: string) {
