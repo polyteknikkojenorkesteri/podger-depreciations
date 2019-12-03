@@ -16,8 +16,8 @@ pipelines:
     develop:
       - step:
           name: Test
-          caches:
-            - node
+#          caches:
+#            - node
           script:
             - npm --version
             - npm cache clean --force
