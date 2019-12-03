@@ -1,5 +1,5 @@
 import {Asset, AssetEntry, CurrencyConversionEntry, EntryValue} from './asset';
-import {Currency, CurrencyDefinition, EUR, Money} from './money';
+import {Currency, CurrencyDefinition, EUR, Money} from 'podger-money';
 import {ClientError} from './error';
 
 export class BalanceError extends ClientError {

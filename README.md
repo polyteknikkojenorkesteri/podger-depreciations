@@ -206,11 +206,7 @@ Balance check entries are optional and do not affect the assets, but are used to
 
 ## Handling Money
 
-This project features a `Money` class to tackle several challanges related to handling money in code. First, it avoids using floats because of rounding errors. Second, it checks that currencies are never mixed. Third, it uses an allocation algorithm to ensure that no cents are lost in depreciations and currency conversions, as the total balance of the assets must always equal to the original balance of the account.
-
-This class is based on Martin Fowler's [Money Pattern](https://martinfowler.com/eaaCatalog/money.html), see Fowler, M. (2003) Patterns of Enterprise Application Architecture, pp. 488–495. The borrowed allocation algorithm was improved to take rounding rules into account and to distribute remainders more evenly, where Fowler's version would build up leftovers always on the oldest assets. This makes a difference when we calculate the accumulated allocations over several decades.
-
-Our `Money` class is similar to [ts-money](https://github.com/macor161/ts-money) but with a more convenient API for our purposes. The implementation is based on [decimal.js](https://github.com/MikeMcl/decimal.js). 
+This project uses a `Money` class from [podger-money](https://bitbucket.org/polyteknikkojenorkesteri/podger-money) to tackle several challanges related to handling money in code. First, it avoids using floats because of rounding errors. Second, it checks that currencies are never mixed. Third, it uses an allocation algorithm to ensure that no cents are lost in depreciations and currency conversions, as the total balance of the assets must always equal to the original balance of the account.
 
 ## API Gateway
 
