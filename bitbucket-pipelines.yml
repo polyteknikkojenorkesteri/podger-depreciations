@@ -7,6 +7,7 @@ pipelines:
         caches:
           - node
         script:
+          - npm config set unsafe-perm true
           - npm install
           - npm test
           - npm run build
@@ -16,13 +17,11 @@ pipelines:
     develop:
       - step:
           name: Test
-#          caches:
-#            - node
+          caches:
+            - node
           script:
-            - npm --version
-            - npm cache clean --force
-            - npm config set unsafe-perm true && npm install
-            - ls node_modules/podger-money
+            - npm config set unsafe-perm true
+            - npm install
             - npm test
             - npm run build
           artifacts:
