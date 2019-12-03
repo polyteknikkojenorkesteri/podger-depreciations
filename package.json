@@ -12,7 +12,7 @@
     "@google-cloud/functions-framework": "^1.1.1",
     "@types/express": "^4.16.1",
     "express": "^4.16.4",
-    "podger-money": "git+https://bitbucket.org/polyteknikkojenorkesteri/podger-money.git#5e80e60"
+    "podger-money": "git+https://bitbucket.org/polyteknikkojenorkesteri/podger-money.git#578a04f"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
