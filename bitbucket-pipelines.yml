@@ -1,5 +1,4 @@
-# Use the same node version as GCP nodejs10 runtime
-image: node:10.15.3
+image: node:12.13.1
 
 pipelines:
   default:
