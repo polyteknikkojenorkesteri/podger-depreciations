@@ -21,7 +21,7 @@ pipelines:
           script:
             - npm --version
             - npm cache clean --force
-            - npm install
+            - npm config set unsafe-perm true && npm install
             - ls node_modules/podger-money
             - npm test
             - npm run build
