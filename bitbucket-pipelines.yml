@@ -19,6 +19,8 @@ pipelines:
           caches:
             - node
           script:
+            - npm --version
+            - npm cache clean --force
             - npm install
             - ls node_modules/podger-money
             - npm test
