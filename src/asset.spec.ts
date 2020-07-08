@@ -1,6 +1,6 @@
 import {Asset, AssetEntry, CurrencyConversionEntry} from './asset';
 import {expect} from 'chai';
-import {EUR} from 'podger-money';
+import {EUR} from '@polyteknikkojenorkesteri/money';
 
 describe('Asset', () => {
   describe('constructor', () => {

@@ -1,4 +1,4 @@
-import {Currency, CurrencyDefinition, Money, MoneyValue} from 'podger-money';
+import {Currency, CurrencyDefinition, Money, MoneyValue} from '@polyteknikkojenorkesteri/money';
 
 export interface EntryValue {
   date: string;

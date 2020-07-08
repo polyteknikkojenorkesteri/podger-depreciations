@@ -206,13 +206,11 @@ Balance check entries are optional and do not affect the assets, but are used to
 
 ## Handling Money
 
-This project uses a `Money` class from [podger-money](https://bitbucket.org/polyteknikkojenorkesteri/podger-money) to tackle several challanges related to handling money in code. First, it avoids using floats because of rounding errors. Second, it checks that currencies are never mixed. Third, it uses an allocation algorithm to ensure that no cents are lost in depreciations and currency conversions, as the total balance of the assets must always equal to the original balance of the account.
+This project uses a `Money` class from [@polyteknikkojenorkesteri/money](https://github.com/polyteknikkojenorkesteri/money) to tackle several challanges related to handling money in code. First, it avoids using floats because of rounding errors. Second, it checks that currencies are never mixed. Third, it uses an allocation algorithm to ensure that no cents are lost in depreciations and currency conversions, as the total balance of the assets must always equal to the original balance of the account.
 
 ## API Gateway
 
-The function is deployed to Google Cloud and should be called via [Cloud Endpoints](https://cloud.google.com/endpoints/). The URL of the endpoint is `https://podger-dev-openapi-6fv77ngoqa-uc.a.run.app/v1/assets/depreciations`, and it requires an API key passed in `key` parameter. Get a key from Cloud Console.
-
-OpenAPI specification for all Podger API endpoints is located here: https://bitbucket.org/polyteknikkojenorkesteri/podger-openapi
+The function is deployed to Google Cloud and is accessible through [Cloud Endpoints](https://cloud.google.com/endpoints/). The URL of the endpoint is `https://podger-dev-openapi-6fv77ngoqa-uc.a.run.app/v1/assets/depreciations`, and it requires an API key passed in `key` parameter. Get a key from Cloud Console.
 
 ## Development
 

@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {Account, BalanceError, InvalidEntryError} from './account';
-import {CurrencyError} from 'podger-money';
+import {CurrencyError} from '@polyteknikkojenorkesteri/money';
 
 describe('Account', () => {
   describe('empty account', () => {
