@@ -1,5 +1,7 @@
 # Podger Depreciations
 
+![.github/workflows/ci.yaml](https://github.com/polyteknikkojenorkesteri/podger-depreciations/workflows/.github/workflows/ci.yaml/badge.svg)
+
 A [Google Cloud function](https://cloud.google.com/functions/) for calculating accumulated [depreciations](https://en.wikipedia.org/wiki/Depreciation) for asset cost allocations when the current value of the assets is unknown. Basically, it takes a long list of existing general ledger entries for one particular account and returns a list of all remaining assets and their current values.
 
 The purpose of this function is to backtrack all existing assets (e.g. equipment and sheet music purchases) that have been accumulating in a general ledger for decades. While this tool was primarily designed for calculating depreciations for asset accounts, it works as well for long-term liabilities too. For example, it can be used to track remaining key deposits. (In fact, we could call both assets and liabilities simply as _tase-erät_, but apparently English does not have such higher-level term. Hence, this project uses the term _asset_ for both assets and liabilities.)
