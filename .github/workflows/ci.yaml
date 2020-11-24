@@ -61,10 +61,10 @@ jobs:
           dist/*.js
 
       - name: Upload Artifacts
-          uses: actions/upload-artifact@v1
-          with:
-            name: '*.zip'
-            path: .
+        uses: actions/upload-artifact@v1
+        with:
+          name: '*.zip'
+          path: .
 
   package-push:
     name: Package and Push
