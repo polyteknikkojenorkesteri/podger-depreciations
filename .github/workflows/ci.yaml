@@ -46,12 +46,9 @@ jobs:
         env:
           CI: true
 
-      - name: Set version
-        run: echo ::set-env name=GIT_SHA_SHORT::$(echo $GITHUB_SHA | cut -c 1-7)
-
       - name: Package
         run: >
-          zip ${ARTIFACT_NAME}-${GIT_SHA_SHORT}.zip
+          zip ${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
           package.json
           package-lock.json
           dist/*.js
@@ -59,13 +56,13 @@ jobs:
       - name: Push to GCS
         run: >
           gsutil cp
-          ${ARTIFACT_NAME}-${GIT_SHA_SHORT}.zip
-          gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-${GIT_SHA_SHORT}.zip
+          ${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
+          gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
 
       - name: Copy as latest
         run: >
           gsutil cp
-          gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-${GIT_SHA_SHORT}.zip
+          gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
           gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
 
       - name: Deploy
