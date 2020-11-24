@@ -1,4 +1,11 @@
-on: push
+on:
+  push:
+    # Deploy 'master' to dev.
+    branches:
+      - master
+
+  # Run tests for any PRs.
+  pull_request:
 
 jobs:
   build:
@@ -53,6 +60,34 @@ jobs:
           package-lock.json
           dist/*.js
 
+      - name: Upload Artifacts
+          uses: actions/upload-artifact@v1
+          with:
+            name: '*.zip'
+            path: .
+
+  package-push:
+    name: Package and Push
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: '*.zip'
+
+      - name: Setup GCloud
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: 'latest'
+          service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          export_default_credentials: true
+
       - name: Push to GCS
         run: >
           gsutil cp
@@ -64,6 +99,23 @@ jobs:
           gsutil cp
           gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
           gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
+
+  deploy:
+    name: Deploy to Cloud Functions
+    needs: package-push
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup GCloud
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: 'latest'
+          service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          export_default_credentials: true
 
       - name: Deploy
         run: >
