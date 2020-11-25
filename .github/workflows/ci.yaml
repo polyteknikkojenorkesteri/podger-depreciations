@@ -123,5 +123,5 @@ jobs:
           --runtime nodejs10
           --trigger-http
           --memory 256MB
-          --source gs://${ARTIFACTS_BUCKET_NAME}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
+          --source gs://${{ secrets.ARTIFACTS_BUCKET_NAME }}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
           --entry-point main
