@@ -53,18 +53,11 @@ jobs:
         env:
           CI: true
 
-      - name: Package
-        run: >
-          zip ${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
-          package.json
-          package-lock.json
-          dist/*.js
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: './*.zip'
+          path: dist
 
   package-push:
     name: Package and Push
@@ -87,6 +80,13 @@ jobs:
           service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
           project_id: ${{ secrets.GCLOUD_PROJECT }}
           export_default_credentials: true
+
+      - name: Package
+        run: >
+          zip ${ARTIFACT_NAME}-${GITHUB_SHA:0:7}.zip
+          package.json
+          package-lock.json
+          dist/*.js
 
       - name: Push to GCS
         run: >
