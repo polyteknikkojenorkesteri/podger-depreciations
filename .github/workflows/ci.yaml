@@ -38,10 +38,11 @@ jobs:
         run: npm run build --if-present
 
       - name: Setup GCloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
-          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          version: latest
           service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
           export_default_credentials: true
 
       - name: Run Integration Tests
@@ -71,10 +72,11 @@ jobs:
           path: dist
 
       - name: Setup GCloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
-          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          version: latest
           service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
           export_default_credentials: true
 
       - name: Package
@@ -106,10 +108,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup GCloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
-          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          version: latest
           service_account_key: ${{ secrets.GCLOUD_API_KEYFILE }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
           export_default_credentials: true
 
       - name: Deploy
