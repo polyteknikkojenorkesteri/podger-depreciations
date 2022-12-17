@@ -1,8 +1,8 @@
 on:
   push:
-    # Deploy 'master' to dev.
+    # Deploy 'main' to dev.
     branches:
-      - master
+      - main
 
   # Run tests for any PRs.
   pull_request:
