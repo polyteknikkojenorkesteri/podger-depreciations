@@ -125,3 +125,20 @@ jobs:
           --memory 256MB
           --source gs://${{ secrets.ARTIFACTS_BUCKET_NAME }}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
           --entry-point main
+
+  dependabot:
+    name: Dependabot
+    needs: build # If build fails, it won't merge the PR
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }} # Detect that the PR author is dependabot
+    steps:
+      - name: Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: ${{ steps.dependabot-metadata.outputs.update-type != 'version-update:semver-major' }}
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
