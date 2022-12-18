@@ -8,7 +8,7 @@ The purpose of this function is to backtrack all existing assets (e.g. equipment
 
 Initially, this function was written as a simple disposable [Apps Script](https://developers.google.com/apps-script/) function for Google Sheets, but as it became more complex with currency conversions and everything, it was rewritten to run on Cloud Functions to make it more maintainable with TypeScript, proper version control and unit tests. It also aims to be consistent with other Podger microservices. (The Podger project includes various tools for PO's financial management).
 
-Currently, the function runs on the Cloud Functions Node.js 10 runtime.
+Currently, the function runs on the Cloud Functions Node.js 16 runtime.
 
 ## Request and Response
 
@@ -216,7 +216,7 @@ The function is deployed to Google Cloud and is accessible through [Cloud Endpoi
 
 ## Development
 
-Cloud Functions uses a Node.js 10 runtime, but in a local environment, it should work on newer versions of Node.js as well.
+Cloud Functions uses a Node.js 16 runtime, but in a local environment, it should work on newer versions of Node.js as well.
 
 ### Unit Tests
 

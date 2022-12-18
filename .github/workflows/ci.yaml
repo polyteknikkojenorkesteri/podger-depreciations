@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: 16.x
 
       - name: Install Dependencies
         run: npm ci
@@ -128,7 +128,7 @@ jobs:
           gcloud functions deploy ${{ secrets.FUNCTION_NAME }}
           --quiet
           --region europe-west1
-          --runtime nodejs10
+          --runtime nodejs16
           --trigger-http
           --memory 256MB
           --source gs://${{ secrets.ARTIFACTS_BUCKET_NAME }}/${ARTIFACT_NAME}/${ARTIFACT_NAME}-latest.zip
