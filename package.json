@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@polyteknikkojenorkesteri/money": "polyteknikkojenorkesteri/money#f94b3ac",
-    "express": "^4.16.4"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^1.9.0",
