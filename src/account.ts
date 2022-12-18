@@ -1,18 +1,28 @@
-import {Asset, AssetEntry, CurrencyConversionEntry, EntryValue} from './asset';
-import {Currency, CurrencyDefinition, EUR, Money} from '@polyteknikkojenorkesteri/money';
-import {ClientError} from './error';
+import {
+  Asset,
+  AssetEntry,
+  CurrencyConversionEntry,
+  EntryValue,
+} from "./asset";
+import {
+  Currency,
+  CurrencyDefinition,
+  EUR,
+  Money,
+} from "@polyteknikkojenorkesteri/money";
+import { ClientError } from "./error";
 
 export class BalanceError extends ClientError {
   constructor(message: string) {
     super(message);
-    this.name = 'BalanceError';
+    this.name = "BalanceError";
   }
 }
 
 export class InvalidEntryError extends ClientError {
   constructor(message: string) {
     super(message);
-    this.name = 'InvalidEntryError';
+    this.name = "InvalidEntryError";
   }
 }
 
@@ -22,9 +32,9 @@ class AccountEntry implements EntryValue {
   readonly assetId?: string;
   readonly description: string;
   readonly currencyConversion?: {
-    readonly from: string | CurrencyDefinition,
-    readonly to: string | CurrencyDefinition,
-    readonly rate: number
+    readonly from: string | CurrencyDefinition;
+    readonly to: string | CurrencyDefinition;
+    readonly rate: number;
   };
   readonly debit?: Money;
   readonly credit?: Money;
@@ -33,7 +43,9 @@ class AccountEntry implements EntryValue {
 
   constructor(value: EntryValue) {
     if (!value.documentId) {
-      throw new InvalidEntryError(`Undefined document id on entry ${this.valueToString(value)}`);
+      throw new InvalidEntryError(
+        `Undefined document id on entry ${this.valueToString(value)}`
+      );
     }
 
     this.date = value.date;
@@ -45,23 +57,31 @@ class AccountEntry implements EntryValue {
     try {
       this.debit = value.debit ? Money.valueOf(value.debit) : undefined;
     } catch (err) {
-      throw new InvalidEntryError(`Invalid debit on ${this.valueToString(value)}: ${err.message}`);
+      throw new InvalidEntryError(
+        `Invalid debit on ${this.valueToString(value)}: ${err}`
+      );
     }
 
     try {
       this.credit = value.credit ? Money.valueOf(value.credit) : undefined;
     } catch (err) {
-      throw new InvalidEntryError(`Invalid credit on ${this.valueToString(value)}: ${err.message}`);
+      throw new InvalidEntryError(
+        `Invalid credit on ${this.valueToString(value)}: ${err}`
+      );
     }
 
     if (!value.balance) {
-      throw new InvalidEntryError(`Invalid balance on ${this.valueToString(value)}: ${value.balance}`);
+      throw new InvalidEntryError(
+        `Invalid balance on ${this.valueToString(value)}: ${value.balance}`
+      );
     }
 
     try {
       this.balance = Money.valueOf(value.balance);
     } catch (err) {
-      throw new InvalidEntryError(`Invalid balance on ${this.valueToString(value)}: ${err.message}`);
+      throw new InvalidEntryError(
+        `Invalid balance on ${this.valueToString(value)}: ${err}`
+      );
     }
 
     if (this.balance) {
@@ -71,7 +91,9 @@ class AccountEntry implements EntryValue {
     } else if (this.debit) {
       this.currency = Currency.valueOf(this.debit.currency);
     } else {
-      throw new InvalidEntryError(`Undefined currency on entry ${this.valueToString(value)}`);
+      throw new InvalidEntryError(
+        `Undefined currency on entry ${this.valueToString(value)}`
+      );
     }
   }
 
@@ -80,7 +102,9 @@ class AccountEntry implements EntryValue {
   }
 
   private valueToString(value: EntryValue) {
-    return `Entry{${value.documentId ? value.documentId : value.date} ${value.description}}`;
+    return `Entry{${value.documentId ? value.documentId : value.date} ${
+      value.description
+    }}`;
   }
 }
 
@@ -88,15 +112,14 @@ class AccountEntry implements EntryValue {
  * Represents a ledger account consisting of assets.
  */
 export class Account {
-
   /**
    * Default currency gets overwritten when the first entry or a currency conversion is added.
    */
   private currency: Currency = EUR;
 
-  private assets: {[s: string]: Asset} = {};
+  private assets: { [s: string]: Asset } = {};
 
-  private type: string = 'asset';
+  private type: string = "asset";
 
   addEntry(value: EntryValue) {
     const entry = new AccountEntry(value);
@@ -140,34 +163,41 @@ export class Account {
   getBalance(): Money {
     return this.getAssets().reduce((acc, asset) => {
       return acc.plus(asset.getBalance());
-    }, Money.valueOf({amount: 0, currency: this.currency}));
+    }, Money.valueOf({ amount: 0, currency: this.currency }));
   }
 
   private applyAssetEntry(entry: AccountEntry) {
     if (entry.assetId === undefined) {
-      throw new Error('Asset id must be defined for an asset entry');
+      throw new Error("Asset id must be defined for an asset entry");
     }
 
     let asset = this.getAsset(entry.assetId);
 
     if (asset === undefined) {
-      asset = new Asset(entry.assetId, entry.description, this.currency, this.type);
+      asset = new Asset(
+        entry.assetId,
+        entry.description,
+        this.currency,
+        this.type
+      );
       this.assets[asset.id] = asset;
     }
 
-    asset.addEntry(new AssetEntry({
-      date: entry.date,
-      documentId: entry.documentId,
-      assetId: entry.assetId,
-      description: entry.description,
-      debit: entry.debit,
-      credit: entry.credit
-    }));
+    asset.addEntry(
+      new AssetEntry({
+        date: entry.date,
+        documentId: entry.documentId,
+        assetId: entry.assetId,
+        description: entry.description,
+        debit: entry.debit,
+        credit: entry.credit,
+      })
+    );
   }
 
   private applyDepreciation(entry: AccountEntry) {
     if (entry.credit === undefined) {
-      throw new Error('Credit must be defined for a depreciation entry');
+      throw new Error("Credit must be defined for a depreciation entry");
     }
 
     const allocations = this.allocationsPerAssetValue();
@@ -182,23 +212,25 @@ export class Account {
       const asset = this.getAsset(assetId);
 
       if (asset === undefined) {
-        throw new Error('Asset was not found');
+        throw new Error("Asset was not found");
       }
 
-      asset.addEntry(new AssetEntry({
-        date: entry.date,
-        documentId: entry.documentId,
-        assetId: assetId,
-        description: entry.description,
-        credit: amount,
-        balance: asset.getBalance().minus(amount)
-      }));
+      asset.addEntry(
+        new AssetEntry({
+          date: entry.date,
+          documentId: entry.documentId,
+          assetId: assetId,
+          description: entry.description,
+          credit: amount,
+          balance: asset.getBalance().minus(amount),
+        })
+      );
     }
   }
 
   private applyCurrencyConversion(entry: AccountEntry) {
     if (entry.currencyConversion === undefined) {
-      throw new Error('Currency conversion must be defined');
+      throw new Error("Currency conversion must be defined");
     }
 
     this.currency = Currency.valueOf(entry.currencyConversion.to);
@@ -216,17 +248,19 @@ export class Account {
       const asset = this.getAsset(assetId);
 
       if (asset === undefined) {
-        throw new Error('Asset was not found');
+        throw new Error("Asset was not found");
       }
 
-      asset.addEntry(new CurrencyConversionEntry({
-        date: entry.date,
-        documentId: entry.documentId,
-        assetId: assetId,
-        description: entry.description,
-        currencyConversion: entry.currencyConversion,
-        balance: convertedBalance
-      }));
+      asset.addEntry(
+        new CurrencyConversionEntry({
+          date: entry.date,
+          documentId: entry.documentId,
+          assetId: assetId,
+          description: entry.description,
+          currencyConversion: entry.currencyConversion,
+          balance: convertedBalance,
+        })
+      );
     }
   }
 
@@ -260,17 +294,21 @@ export class Account {
     const totalValue = this.getBalance();
 
     if (!totalValue.equals(entry.balance)) {
-      throw new BalanceError(`Expected assets total value to equal ${entry} balance ${entry.balance} but was ${totalValue}`);
+      throw new BalanceError(
+        `Expected assets total value to equal ${entry} balance ${entry.balance} but was ${totalValue}`
+      );
     }
   }
 
   private getAccountType(firstEntry: EntryValue): string {
     if (firstEntry.debit && !firstEntry.credit) {
-      return 'asset';
+      return "asset";
     } else if (!firstEntry.debit && firstEntry.credit) {
-      return 'liability';
+      return "liability";
     }
 
-    throw new InvalidEntryError('First entry must be either a debit or a credit entry');
+    throw new InvalidEntryError(
+      "First entry must be either a debit or a credit entry"
+    );
   }
 }
